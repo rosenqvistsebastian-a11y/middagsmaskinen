@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Middagsmaskinen</title>
+  <meta name="description" content="Vad ska vi äta? Middagsmaskinen vet.">
+  <meta name="theme-color" content="#e8553e">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon">🍽️</span> Middagsmaskinen</div>
+    <button class="surprise-btn" id="surpriseBtn" aria-label="Överraska mig">🎲 Överraska mig</button>
+  </header>
+
+  <main id="main">
+    <!-- Recept -->
+    <section class="view active" id="view-recept" aria-label="Recept">
+      <h1 class="view-title">Vad ska vi äta?</h1>
+      <input class="search" id="search" type="search" placeholder="Sök recept eller råvara…" autocomplete="off">
+      <div class="chips" id="tagFilter" role="group" aria-label="Filter"></div>
+      <div class="recipe-list" id="recipeList"></div>
+    </section>
+
+    <!-- Middagsdejt -->
+    <section class="view" id="view-dejt" aria-label="Middagsdejt">
+      <h1 class="view-title">Middagsdejt <span class="muted small">swipea fram kvällens match</span></h1>
+      <div class="deck" id="deck"></div>
+      <div class="deck-actions">
+        <button class="round-btn nope" id="nopeBtn" aria-label="Nej tack">✖</button>
+        <button class="round-btn like" id="likeBtn" aria-label="Gilla">❤</button>
+      </div>
+      <h2 class="section-title">Dina matcher 💘</h2>
+      <div class="match-list" id="matchList"></div>
+    </section>
+
+    <!-- Kylskåp -->
+    <section class="view" id="view-kyl" aria-label="Mitt kylskåp">
+      <h1 class="view-title">Mitt kylskåp</h1>
+      <form class="add-row" id="fridgeForm" autocomplete="off">
+        <input id="fridgeInput" list="ingList" placeholder="Skriv t.ex. ägg, pasta, lök…" aria-label="Lägg till råvara">
+        <button class="btn" type="submit">Lägg till</button>
+      </form>
+      <datalist id="ingList"></datalist>
+      <div class="chips have" id="fridgeChips"></div>
+
+      <details class="panel" id="offersPanel">
+        <summary>🏷️ Veckans erbjudanden <span class="muted small">ICA Kvantum Teleborg</span></summary>
+        <p class="muted small">Klistra in erbjudandena från ICA-appen eller ica.se (eller dina Stammis-erbjudanden). Maskinen hittar råvarorna själv.</p>
+        <textarea id="offersText" rows="4" placeholder="Kycklingfilé 89:-/kg&#10;Laxfilé 2 för 100:-&#10;Paprika 25:-/kg…"></textarea>
+        <div class="row gap"><button class="btn" id="offersParse">Läs in erbjudanden</button><button class="btn ghost" id="offersClear">Rensa</button></div>
+        <div class="chips offer" id="offerChips"></div>
+      </details>
+
+      <details class="panel">
+        <summary>✅ Bocka i från listan</summary>
+        <div id="ingPicker"></div>
+      </details>
+
+      <h2 class="section-title" id="matchTitle">Recept som passar</h2>
+      <div class="recipe-list" id="fridgeMatches"></div>
+    </section>
+
+    <!-- Veckomeny -->
+    <section class="view" id="view-vecka" aria-label="Veckomeny">
+      <h1 class="view-title">Veckomeny</h1>
+      <button class="btn big" id="makeWeek">✨ Fixa veckan åt mig</button>
+      <p class="muted small hint" id="weekHint">Swipea en rätt åt sidan för att byta den.</p>
+      <div class="week" id="week"></div>
+    </section>
+
+    <!-- Inköp -->
+    <section class="view" id="view-inkop" aria-label="Inköpslista">
+      <h1 class="view-title">Inköpslista</h1>
+      <form class="add-row" id="extraForm" autocomplete="off">
+        <input id="extraInput" placeholder="Lägg till något extra (kaffe, blöjor…)" aria-label="Extra vara">
+        <button class="btn" type="submit">+</button>
+      </form>
+      <div class="shop-progress" id="shopProgress"></div>
+      <div id="shopList"></div>
+      <button class="btn ghost" id="clearChecked">Rensa avbockade</button>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Meny">
+    <button class="tab active" data-view="recept"><span>🍽️</span>Recept</button>
+    <button class="tab" data-view="dejt"><span>💘</span>Dejt</button>
+    <button class="tab" data-view="kyl"><span>🧊</span>Kylskåp</button>
+    <button class="tab" data-view="vecka"><span>📅</span>Vecka</button>
+    <button class="tab" data-view="inkop"><span>🛒</span>Inköp<b class="badge" id="shopBadge" hidden></b></button>
+  </nav>
+
+  <!-- Receptvy -->
+  <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+  <article class="sheet" id="sheet" aria-modal="true" role="dialog" hidden></article>
+
+  <!-- Överraska mig -->
+  <div class="surprise" id="surprise" hidden>
+    <div class="slot"><div class="slot-reel" id="slotReel"></div></div>
+    <div class="surprise-result" id="surpriseResult"></div>
+    <div class="confetti" id="confetti"></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

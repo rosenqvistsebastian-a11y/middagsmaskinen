@@ -2,24 +2,27 @@
 
 Mobil-PWA på svenska som svarar på "vad ska vi äta?".
 
-- [ ] 1. Projektskelett: index.html, style.css, app.js, flikar (Recept, Kylskåp, Veckomeny, Inköp)
+- [x] 1. Projektskelett: index.html, style.css, app.js, flikar (Recept, Kylskåp, Veckomeny, Inköp)
 - [x] 2. recipes.json med 40 vardagsrecept (≤30 min, taggar snabb/billig/veg/matlåda, avdelning per ingrediens)
-- [ ] 3. Receptlista med taggfilter + receptvy (ingredienser & steg)
-- [ ] 4. Mitt kylskåp: skriv eller bocka i ingredienser
-- [ ] 5. Kylskåpsmatchning: recept sorterade efter hur mycket du har
-- [ ] 6. Veckomeny med ett klick (7 olika rätter)
-- [ ] 7. Byt rätt i veckomenyn med swipe
-- [ ] 8. Inköpslista automatiskt, summerad och sorterad efter butiksavdelning
-- [ ] 9. Bocka av i butiken (+ "har hemma" från kylskåpet)
-- [ ] 10. "Överraska mig"-knapp med rolig animation
-- [ ] 11. Allt sparas lokalt (localStorage)
-- [ ] 12. Offline: manifest + service worker + ikoner
-- [ ] 13. Snygg mobil-först-design och polish
-- [ ] 14. End-to-end-test i Playwright (mobilvy, offline)
-- [ ] 15. README med hur man kör
-- [ ] 16. Middagsdejt (Tinder-läge): swipea höger/vänster på rätter, gillade -> recept + favoriter
-- [ ] 17. Erbjudanden (ICA Kvantum Teleborg): klistra in veckans erbjudanden -> appen känner igen råvaror och tipsar om recept
+- [x] 3. Receptlista med taggfilter + receptvy (ingredienser & steg)
+- [x] 4. Mitt kylskåp: skriv eller bocka i ingredienser
+- [x] 5. Kylskåpsmatchning: recept sorterade efter hur mycket du har
+- [x] 6. Veckomeny med ett klick (7 olika rätter)
+- [x] 7. Byt rätt i veckomenyn med swipe
+- [x] 8. Inköpslista automatiskt, summerad och sorterad efter butiksavdelning
+- [x] 9. Bocka av i butiken (+ "har hemma" från kylskåpet)
+- [x] 10. "Överraska mig"-knapp med rolig animation
+- [x] 11. Allt sparas lokalt (localStorage)
+- [x] 12. Offline: manifest + service worker + ikoner
+- [x] 13. Snygg mobil-först-design och polish
+- [x] 14. End-to-end-test i Playwright (mobilvy, offline)
+- [x] 15. README med hur man kör
+- [x] 16. Middagsdejt (Tinder-läge): swipea höger/vänster på rätter, gillade -> recept + favoriter
+- [x] 17. Erbjudanden (ICA Kvantum Teleborg): klistra in veckans erbjudanden -> appen känner igen råvaror och tipsar om recept
 
 ## Problem / anteckningar
 - ica.se är blockerat av nätverket i byggmiljön (403), och en PWA kan inte hämta ica.se direkt (CORS).
   Stammis-erbjudanden kräver inloggning. Lösning: klistra in erbjudandetext -> automatisk igenkänning.
+
+## Status
+Alla uppgifter klara. `node tests/e2e.js` → 25/25 gröna (iPhone 13-vy, offline, sparning).
