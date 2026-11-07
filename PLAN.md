@@ -3,7 +3,7 @@
 Mobil-PWA på svenska som svarar på "vad ska vi äta?".
 
 - [ ] 1. Projektskelett: index.html, style.css, app.js, flikar (Recept, Kylskåp, Veckomeny, Inköp)
-- [ ] 2. recipes.json med 40 vardagsrecept (≤30 min, taggar snabb/billig/veg/matlåda, avdelning per ingrediens)
+- [x] 2. recipes.json med 40 vardagsrecept (≤30 min, taggar snabb/billig/veg/matlåda, avdelning per ingrediens)
 - [ ] 3. Receptlista med taggfilter + receptvy (ingredienser & steg)
 - [ ] 4. Mitt kylskåp: skriv eller bocka i ingredienser
 - [ ] 5. Kylskåpsmatchning: recept sorterade efter hur mycket du har
@@ -17,5 +17,9 @@ Mobil-PWA på svenska som svarar på "vad ska vi äta?".
 - [ ] 13. Snygg mobil-först-design och polish
 - [ ] 14. End-to-end-test i Playwright (mobilvy, offline)
 - [ ] 15. README med hur man kör
+- [ ] 16. Middagsdejt (Tinder-läge): swipea höger/vänster på rätter, gillade -> recept + favoriter
+- [ ] 17. Erbjudanden (ICA Kvantum Teleborg): klistra in veckans erbjudanden -> appen känner igen råvaror och tipsar om recept
 
 ## Problem / anteckningar
+- ica.se är blockerat av nätverket i byggmiljön (403), och en PWA kan inte hämta ica.se direkt (CORS).
+  Stammis-erbjudanden kräver inloggning. Lösning: klistra in erbjudandetext -> automatisk igenkänning.

@@ -1,0 +1,2437 @@
+{
+ "avdelningar": [
+  "Frukt & grönt",
+  "Bröd",
+  "Mejeri & ägg",
+  "Kött & fisk",
+  "Vegetariskt kylt",
+  "Fryst",
+  "Skafferi",
+  "Kryddor & såser"
+ ],
+ "basvaror": [
+  "salt",
+  "peppar",
+  "olja",
+  "vatten",
+  "socker"
+ ],
+ "ingredienser": {
+  "gul lök": "Frukt & grönt",
+  "rödlök": "Frukt & grönt",
+  "vitlök": "Frukt & grönt",
+  "tomat": "Frukt & grönt",
+  "körsbärstomater": "Frukt & grönt",
+  "gurka": "Frukt & grönt",
+  "paprika": "Frukt & grönt",
+  "morot": "Frukt & grönt",
+  "potatis": "Frukt & grönt",
+  "sötpotatis": "Frukt & grönt",
+  "broccoli": "Frukt & grönt",
+  "blomkål": "Frukt & grönt",
+  "spenat": "Frukt & grönt",
+  "sallad": "Frukt & grönt",
+  "avokado": "Frukt & grönt",
+  "citron": "Frukt & grönt",
+  "lime": "Frukt & grönt",
+  "champinjoner": "Frukt & grönt",
+  "purjolök": "Frukt & grönt",
+  "zucchini": "Frukt & grönt",
+  "färsk ingefära": "Frukt & grönt",
+  "färsk koriander": "Frukt & grönt",
+  "färsk basilika": "Frukt & grönt",
+  "dill": "Frukt & grönt",
+  "salladslök": "Frukt & grönt",
+  "äpple": "Frukt & grönt",
+  "sockerärtor": "Frukt & grönt",
+  "vitkål": "Frukt & grönt",
+  "chili": "Frukt & grönt",
+  "rucola": "Frukt & grönt",
+  "tortillabröd": "Bröd",
+  "pitabröd": "Bröd",
+  "hamburgerbröd": "Bröd",
+  "rostbröd": "Bröd",
+  "tacoskal": "Bröd",
+  "ägg": "Mejeri & ägg",
+  "mjölk": "Mejeri & ägg",
+  "smör": "Mejeri & ägg",
+  "grädde": "Mejeri & ägg",
+  "matlagningsgrädde": "Mejeri & ägg",
+  "crème fraiche": "Mejeri & ägg",
+  "riven ost": "Mejeri & ägg",
+  "parmesan": "Mejeri & ägg",
+  "fetaost": "Mejeri & ägg",
+  "halloumi": "Mejeri & ägg",
+  "mozzarella": "Mejeri & ägg",
+  "turkisk yoghurt": "Mejeri & ägg",
+  "kesella": "Mejeri & ägg",
+  "cheddar": "Mejeri & ägg",
+  "bacon": "Kött & fisk",
+  "falukorv": "Kött & fisk",
+  "kycklingfilé": "Kött & fisk",
+  "kycklinglårfilé": "Kött & fisk",
+  "nötfärs": "Kött & fisk",
+  "laxfilé": "Kött & fisk",
+  "torskfilé": "Kött & fisk",
+  "räkor": "Kött & fisk",
+  "rimmat sidfläsk": "Kött & fisk",
+  "köttbullar": "Kött & fisk",
+  "skinka": "Kött & fisk",
+  "hamburgare": "Kött & fisk",
+  "tofu": "Vegetariskt kylt",
+  "färsk tortellini": "Vegetariskt kylt",
+  "gnocchi": "Vegetariskt kylt",
+  "falafel": "Fryst",
+  "fiskpinnar": "Fryst",
+  "pyttipanna": "Fryst",
+  "frysta ärtor": "Fryst",
+  "ugnspommes": "Fryst",
+  "frysta wokgrönsaker": "Fryst",
+  "fryst spenat": "Fryst",
+  "pasta": "Skafferi",
+  "makaroner": "Skafferi",
+  "ris": "Skafferi",
+  "jasminris": "Skafferi",
+  "äggnudlar": "Skafferi",
+  "risnudlar": "Skafferi",
+  "couscous": "Skafferi",
+  "krossade tomater": "Skafferi",
+  "passerade tomater": "Skafferi",
+  "tomatpuré": "Skafferi",
+  "kokosmjölk": "Skafferi",
+  "kikärtor": "Skafferi",
+  "röda linser": "Skafferi",
+  "kidneybönor": "Skafferi",
+  "svarta bönor": "Skafferi",
+  "majs": "Skafferi",
+  "vetemjöl": "Skafferi",
+  "buljongtärning": "Skafferi",
+  "grön pesto": "Skafferi",
+  "soltorkade tomater": "Skafferi",
+  "jordnötssmör": "Skafferi",
+  "salsa": "Skafferi",
+  "arborioris": "Skafferi",
+  "vitt vin": "Skafferi",
+  "oliver": "Skafferi",
+  "lingonsylt": "Skafferi",
+  "potatismospulver": "Skafferi",
+  "tacokrydda": "Skafferi",
+  "honung": "Skafferi",
+  "soja": "Kryddor & såser",
+  "currypulver": "Kryddor & såser",
+  "röd currypasta": "Kryddor & såser",
+  "paprikapulver": "Kryddor & såser",
+  "spiskummin": "Kryddor & såser",
+  "chiliflakes": "Kryddor & såser",
+  "oregano": "Kryddor & såser",
+  "senap": "Kryddor & såser",
+  "ketchup": "Kryddor & såser",
+  "sweet chili": "Kryddor & såser",
+  "timjan": "Kryddor & såser",
+  "ostronsås": "Kryddor & såser",
+  "sambal oelek": "Kryddor & såser",
+  "majonnäs": "Kryddor & såser",
+  "garam masala": "Kryddor & såser",
+  "salt": "Skafferi",
+  "peppar": "Skafferi",
+  "olja": "Skafferi",
+  "vatten": "Skafferi",
+  "socker": "Skafferi"
+ },
+ "recept": [
+  {
+   "id": 1,
+   "namn": "Pasta carbonara",
+   "emoji": "🍝",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "pasta",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "bacon",
+     "mangd": 140,
+     "enhet": "g"
+    },
+    {
+     "namn": "ägg",
+     "mangd": 4,
+     "enhet": "st"
+    },
+    {
+     "namn": "parmesan",
+     "mangd": 80,
+     "enhet": "g"
+    },
+    {
+     "namn": "peppar",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "salt",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka pastan i saltat vatten.",
+    "Stek baconet krispigt.",
+    "Vispa ägg och riven parmesan.",
+    "Blanda varm pasta med bacon, rör ner äggblandningen snabbt utanför plattan. Mycket peppar!"
+   ]
+  },
+  {
+   "id": 2,
+   "namn": "Korv stroganoff",
+   "emoji": "🌭",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "snabb",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "falukorv",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "krossade tomater",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "matlagningsgrädde",
+     "mangd": 2.5,
+     "enhet": "dl"
+    },
+    {
+     "namn": "tomatpuré",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "senap",
+     "mangd": 1,
+     "enhet": "msk"
+    },
+    {
+     "namn": "ris",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "smör",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka riset.",
+    "Strimla korv och lök, fräs i smör.",
+    "Rör ner tomatpuré, krossade tomater, grädde och senap.",
+    "Låt puttra 5 min. Servera med ris."
+   ]
+  },
+  {
+   "id": 3,
+   "namn": "Pannkakor med sylt",
+   "emoji": "🥞",
+   "tid": 30,
+   "portioner": 4,
+   "taggar": [
+    "billig",
+    "veg"
+   ],
+   "ingredienser": [
+    {
+     "namn": "vetemjöl",
+     "mangd": 2.5,
+     "enhet": "dl"
+    },
+    {
+     "namn": "mjölk",
+     "mangd": 6,
+     "enhet": "dl"
+    },
+    {
+     "namn": "ägg",
+     "mangd": 3,
+     "enhet": "st"
+    },
+    {
+     "namn": "smör",
+     "mangd": 3,
+     "enhet": "msk"
+    },
+    {
+     "namn": "salt",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "lingonsylt",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Vispa mjöl och hälften av mjölken slät.",
+    "Vispa i resten av mjölken, ägg, salt och smält smör.",
+    "Stek tunna pannkakor i smör.",
+    "Servera med sylt (och kanske grädde)."
+   ]
+  },
+  {
+   "id": 4,
+   "namn": "Fiskpinnar med potatismos",
+   "emoji": "🐟",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "snabb",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "fiskpinnar",
+     "mangd": 1,
+     "enhet": "paket"
+    },
+    {
+     "namn": "potatismospulver",
+     "mangd": 1,
+     "enhet": "paket"
+    },
+    {
+     "namn": "mjölk",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "smör",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "frysta ärtor",
+     "mangd": 300,
+     "enhet": "g"
+    },
+    {
+     "namn": "citron",
+     "mangd": 1,
+     "enhet": "st"
+    }
+   ],
+   "steg": [
+    "Ugnsbaka fiskpinnarna enligt paketet.",
+    "Rör ihop moset med mjölk, vatten och smör.",
+    "Koka ärtorna 2 min.",
+    "Servera med citronklyftor."
+   ]
+  },
+  {
+   "id": 5,
+   "namn": "Fredagstacos",
+   "emoji": "🌮",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "nötfärs",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "tacokrydda",
+     "mangd": 1,
+     "enhet": "påse"
+    },
+    {
+     "namn": "tortillabröd",
+     "mangd": 8,
+     "enhet": "st"
+    },
+    {
+     "namn": "tomat",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "gurka",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "sallad",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "riven ost",
+     "mangd": 150,
+     "enhet": "g"
+    },
+    {
+     "namn": "crème fraiche",
+     "mangd": 2,
+     "enhet": "dl"
+    },
+    {
+     "namn": "salsa",
+     "mangd": 1,
+     "enhet": "burk"
+    },
+    {
+     "namn": "majs",
+     "mangd": 1,
+     "enhet": "burk"
+    }
+   ],
+   "steg": [
+    "Bryn färsen och rör ner kryddan + lite vatten.",
+    "Hacka grönsakerna.",
+    "Värm bröden.",
+    "Bygg själv vid bordet!"
+   ]
+  },
+  {
+   "id": 6,
+   "namn": "Kycklingcurry med ris",
+   "emoji": "🍛",
+   "tid": 30,
+   "portioner": 4,
+   "taggar": [
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "kycklingfilé",
+     "mangd": 600,
+     "enhet": "g"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "currypulver",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "kokosmjölk",
+     "mangd": 400,
+     "enhet": "ml"
+    },
+    {
+     "namn": "paprika",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "ris",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "salt",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka riset.",
+    "Bryn kyckling i bitar med lök och curry.",
+    "Häll i kokosmjölk och strimlad paprika.",
+    "Puttra 10 min. Smaka av med salt."
+   ]
+  },
+  {
+   "id": 7,
+   "namn": "Pasta med linsbolognese",
+   "emoji": "🍅",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "billig",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "pasta",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "röda linser",
+     "mangd": 2,
+     "enhet": "dl"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 2,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "morot",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "krossade tomater",
+     "mangd": 800,
+     "enhet": "g"
+    },
+    {
+     "namn": "buljongtärning",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "oregano",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Fräs hackad lök, vitlök och riven morot.",
+    "Tillsätt linser, tomater, buljong och 2 dl vatten.",
+    "Koka 15 min tills linserna är mjuka.",
+    "Servera med pasta."
+   ]
+  },
+  {
+   "id": 8,
+   "namn": "Citronlax med pressad potatis",
+   "emoji": "🍋",
+   "tid": 30,
+   "portioner": 4,
+   "taggar": [],
+   "ingredienser": [
+    {
+     "namn": "laxfilé",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "potatis",
+     "mangd": 800,
+     "enhet": "g"
+    },
+    {
+     "namn": "citron",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "smör",
+     "mangd": 3,
+     "enhet": "msk"
+    },
+    {
+     "namn": "dill",
+     "mangd": 1,
+     "enhet": "kruka"
+    },
+    {
+     "namn": "crème fraiche",
+     "mangd": 2,
+     "enhet": "dl"
+    },
+    {
+     "namn": "salt",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "peppar",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka potatisen.",
+    "Lägg laxen i form, salta, citron på. Ugn 200° i 15 min.",
+    "Rör crème fraiche med dill och citronskal.",
+    "Pressa potatisen grovt med smör. Servera."
+   ]
+  },
+  {
+   "id": 9,
+   "namn": "Falafel i pitabröd",
+   "emoji": "🧆",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "falafel",
+     "mangd": 1,
+     "enhet": "paket"
+    },
+    {
+     "namn": "pitabröd",
+     "mangd": 4,
+     "enhet": "st"
+    },
+    {
+     "namn": "turkisk yoghurt",
+     "mangd": 2,
+     "enhet": "dl"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 1,
+     "enhet": "klyfta"
+    },
+    {
+     "namn": "gurka",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "tomat",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "rödlök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "sallad",
+     "mangd": 1,
+     "enhet": "st"
+    }
+   ],
+   "steg": [
+    "Värm falafel och bröd i ugnen.",
+    "Rör yoghurt med pressad vitlök och salt.",
+    "Skiva grönsakerna.",
+    "Fyll bröden – klart!"
+   ]
+  },
+  {
+   "id": 10,
+   "namn": "Kikärtscurry",
+   "emoji": "🥥",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "billig",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "kikärtor",
+     "mangd": 2,
+     "enhet": "burkar"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 2,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "färsk ingefära",
+     "mangd": 1,
+     "enhet": "bit"
+    },
+    {
+     "namn": "garam masala",
+     "mangd": 1,
+     "enhet": "msk"
+    },
+    {
+     "namn": "krossade tomater",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "kokosmjölk",
+     "mangd": 400,
+     "enhet": "ml"
+    },
+    {
+     "namn": "spenat",
+     "mangd": 65,
+     "enhet": "g"
+    },
+    {
+     "namn": "ris",
+     "mangd": 4,
+     "enhet": "dl"
+    }
+   ],
+   "steg": [
+    "Koka riset.",
+    "Fräs lök, vitlök, ingefära och garam masala.",
+    "Tillsätt tomat, kokosmjölk och kikärtor. Puttra 10 min.",
+    "Vänd ner spenaten precis innan servering."
+   ]
+  },
+  {
+   "id": 11,
+   "namn": "Pyttipanna med stekt ägg",
+   "emoji": "🍳",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "snabb",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "pyttipanna",
+     "mangd": 1,
+     "enhet": "påse"
+    },
+    {
+     "namn": "ägg",
+     "mangd": 4,
+     "enhet": "st"
+    },
+    {
+     "namn": "smör",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "lingonsylt",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "senap",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Stek pyttin i smör tills den får färg.",
+    "Stek äggen.",
+    "Servera med sylt eller senap. Ingen skam!"
+   ]
+  },
+  {
+   "id": 12,
+   "namn": "Köttbullar och makaroner",
+   "emoji": "🧆",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "snabb",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "köttbullar",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "makaroner",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "smör",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "ketchup",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "lingonsylt",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka makaronerna.",
+    "Stek köttbullarna i smör.",
+    "Servera med ketchup eller lingon – välj sida!"
+   ]
+  },
+  {
+   "id": 13,
+   "namn": "Halloumiburgare",
+   "emoji": "🍔",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "halloumi",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "hamburgerbröd",
+     "mangd": 4,
+     "enhet": "st"
+    },
+    {
+     "namn": "sallad",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "tomat",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "rödlök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "majonnäs",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "sweet chili",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "avokado",
+     "mangd": 1,
+     "enhet": "st"
+    }
+   ],
+   "steg": [
+    "Skiva halloumin och stek gyllene.",
+    "Rosta bröden.",
+    "Rör majonnäs med sweet chili.",
+    "Bygg burgare med alla godsaker."
+   ]
+  },
+  {
+   "id": 14,
+   "namn": "Svampomelett med ost",
+   "emoji": "🍄",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "snabb",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "ägg",
+     "mangd": 8,
+     "enhet": "st"
+    },
+    {
+     "namn": "mjölk",
+     "mangd": 1,
+     "enhet": "dl"
+    },
+    {
+     "namn": "champinjoner",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "riven ost",
+     "mangd": 100,
+     "enhet": "g"
+    },
+    {
+     "namn": "smör",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "salladslök",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "salt",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "peppar",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Stek skivad svamp i smör.",
+    "Vispa ägg, mjölk, salt och peppar.",
+    "Häll över svampen, låt stelna på medelvärme.",
+    "Strö över ost och salladslök, vik ihop."
+   ]
+  },
+  {
+   "id": 15,
+   "namn": "Kycklingwok med nudlar",
+   "emoji": "🥢",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "kycklingfilé",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "äggnudlar",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "frysta wokgrönsaker",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "soja",
+     "mangd": 3,
+     "enhet": "msk"
+    },
+    {
+     "namn": "ostronsås",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 2,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "färsk ingefära",
+     "mangd": 1,
+     "enhet": "bit"
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka nudlarna.",
+    "Woka kycklingstrimlor heta i olja.",
+    "Tillsätt grönsaker, vitlök och ingefära.",
+    "Vänd ner nudlar, soja och ostronsås."
+   ]
+  },
+  {
+   "id": 16,
+   "namn": "Tortellini med spenat & grädde",
+   "emoji": "🥟",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "färsk tortellini",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "fryst spenat",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "matlagningsgrädde",
+     "mangd": 2.5,
+     "enhet": "dl"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 1,
+     "enhet": "klyfta"
+    },
+    {
+     "namn": "parmesan",
+     "mangd": 50,
+     "enhet": "g"
+    },
+    {
+     "namn": "peppar",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka tortellinin.",
+    "Värm grädde, spenat och vitlök i en panna.",
+    "Rör ner parmesan och tortellini.",
+    "Peppra rejält."
+   ]
+  },
+  {
+   "id": 17,
+   "namn": "Pestopasta med kyckling",
+   "emoji": "🌿",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "snabb",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "pasta",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "kycklingfilé",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "grön pesto",
+     "mangd": 1,
+     "enhet": "burk"
+    },
+    {
+     "namn": "körsbärstomater",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "rucola",
+     "mangd": 65,
+     "enhet": "g"
+    },
+    {
+     "namn": "parmesan",
+     "mangd": 50,
+     "enhet": "g"
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka pastan.",
+    "Stek kycklingen i bitar.",
+    "Blanda pasta, pesto, kyckling och halverade tomater.",
+    "Toppa med rucola och parmesan."
+   ]
+  },
+  {
+   "id": 18,
+   "namn": "Tomatsoppa med ostmacka",
+   "emoji": "🥫",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "passerade tomater",
+     "mangd": 1000,
+     "enhet": "g"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 2,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "buljongtärning",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "matlagningsgrädde",
+     "mangd": 1,
+     "enhet": "dl"
+    },
+    {
+     "namn": "rostbröd",
+     "mangd": 8,
+     "enhet": "skivor"
+    },
+    {
+     "namn": "cheddar",
+     "mangd": 150,
+     "enhet": "g"
+    },
+    {
+     "namn": "smör",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "färsk basilika",
+     "mangd": 1,
+     "enhet": "kruka"
+    }
+   ],
+   "steg": [
+    "Fräs lök och vitlök.",
+    "Tillsätt tomater, buljong och 3 dl vatten, koka 10 min.",
+    "Mixa med grädde.",
+    "Stek ostmackor i smör tills osten smält. Doppa!"
+   ]
+  },
+  {
+   "id": 19,
+   "namn": "Röd linssoppa",
+   "emoji": "🥣",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "billig",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "röda linser",
+     "mangd": 3,
+     "enhet": "dl"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "morot",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "spiskummin",
+     "mangd": 1,
+     "enhet": "tsk"
+    },
+    {
+     "namn": "krossade tomater",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "buljongtärning",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "citron",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "turkisk yoghurt",
+     "mangd": 2,
+     "enhet": "dl"
+    }
+   ],
+   "steg": [
+    "Fräs lök, morot och spiskummin.",
+    "Tillsätt linser, tomat, buljong och 1 liter vatten.",
+    "Koka 15 min, mixa slät.",
+    "Pressa i citron. Toppa med yoghurt."
+   ]
+  },
+  {
+   "id": 20,
+   "namn": "Ugnsfalukorv med ost & senap",
+   "emoji": "🧀",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "falukorv",
+     "mangd": 600,
+     "enhet": "g"
+    },
+    {
+     "namn": "senap",
+     "mangd": 3,
+     "enhet": "msk"
+    },
+    {
+     "namn": "riven ost",
+     "mangd": 100,
+     "enhet": "g"
+    },
+    {
+     "namn": "tomat",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "potatismospulver",
+     "mangd": 1,
+     "enhet": "paket"
+    },
+    {
+     "namn": "mjölk",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "smör",
+     "mangd": 2,
+     "enhet": "msk"
+    }
+   ],
+   "steg": [
+    "Snitta korven, fyll med senap och tomatskivor.",
+    "Strö ost över, ugn 225° i 15 min.",
+    "Rör ihop moset.",
+    "Servera – barndom på en tallrik."
+   ]
+  },
+  {
+   "id": 21,
+   "namn": "Ugnstorsk med citron & ris",
+   "emoji": "🐠",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [],
+   "ingredienser": [
+    {
+     "namn": "torskfilé",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "citron",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "crème fraiche",
+     "mangd": 2,
+     "enhet": "dl"
+    },
+    {
+     "namn": "dill",
+     "mangd": 1,
+     "enhet": "kruka"
+    },
+    {
+     "namn": "ris",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "broccoli",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "salt",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "peppar",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka riset.",
+    "Lägg torsken i form, bred över crème fraiche med citronskal och dill.",
+    "Ugn 200° i 15 min.",
+    "Koka broccolin 3 min. Servera."
+   ]
+  },
+  {
+   "id": 22,
+   "namn": "Chili sin carne",
+   "emoji": "🌶️",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "billig",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "kidneybönor",
+     "mangd": 1,
+     "enhet": "burk"
+    },
+    {
+     "namn": "svarta bönor",
+     "mangd": 1,
+     "enhet": "burk"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "paprika",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "krossade tomater",
+     "mangd": 800,
+     "enhet": "g"
+    },
+    {
+     "namn": "spiskummin",
+     "mangd": 1,
+     "enhet": "tsk"
+    },
+    {
+     "namn": "paprikapulver",
+     "mangd": 1,
+     "enhet": "msk"
+    },
+    {
+     "namn": "chiliflakes",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "ris",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "crème fraiche",
+     "mangd": 2,
+     "enhet": "dl"
+    }
+   ],
+   "steg": [
+    "Koka riset.",
+    "Fräs lök, paprika och kryddor.",
+    "Tillsätt bönor och tomater, puttra 15 min.",
+    "Toppa med crème fraiche."
+   ]
+  },
+  {
+   "id": 23,
+   "namn": "Bönquesadillas",
+   "emoji": "🫓",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "snabb",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "tortillabröd",
+     "mangd": 8,
+     "enhet": "st"
+    },
+    {
+     "namn": "svarta bönor",
+     "mangd": 1,
+     "enhet": "burk"
+    },
+    {
+     "namn": "majs",
+     "mangd": 1,
+     "enhet": "burk"
+    },
+    {
+     "namn": "riven ost",
+     "mangd": 200,
+     "enhet": "g"
+    },
+    {
+     "namn": "salsa",
+     "mangd": 1,
+     "enhet": "burk"
+    },
+    {
+     "namn": "spiskummin",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Mosa bönorna grovt med spiskummin.",
+    "Bred på bröd, strö över majs och ost, lägg på ett bröd till.",
+    "Stek gyllene på båda sidor.",
+    "Skär i trianglar, doppa i salsa."
+   ]
+  },
+  {
+   "id": 24,
+   "namn": "Pasta bolognese",
+   "emoji": "🍝",
+   "tid": 30,
+   "portioner": 4,
+   "taggar": [
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "nötfärs",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "pasta",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "morot",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 2,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "krossade tomater",
+     "mangd": 800,
+     "enhet": "g"
+    },
+    {
+     "namn": "tomatpuré",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "buljongtärning",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "oregano",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "parmesan",
+     "mangd": 50,
+     "enhet": "g"
+    }
+   ],
+   "steg": [
+    "Bryn färsen med lök, morot och vitlök.",
+    "Tillsätt tomatpuré, tomater, buljong och oregano.",
+    "Puttra 15 min medan pastan kokar.",
+    "Servera med parmesan."
+   ]
+  },
+  {
+   "id": 25,
+   "namn": "Krämig svamprisotto",
+   "emoji": "🍄",
+   "tid": 30,
+   "portioner": 4,
+   "taggar": [
+    "veg"
+   ],
+   "ingredienser": [
+    {
+     "namn": "arborioris",
+     "mangd": 3,
+     "enhet": "dl"
+    },
+    {
+     "namn": "champinjoner",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "vitt vin",
+     "mangd": 1,
+     "enhet": "dl"
+    },
+    {
+     "namn": "buljongtärning",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "parmesan",
+     "mangd": 80,
+     "enhet": "g"
+    },
+    {
+     "namn": "smör",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "timjan",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Fräs lök och svamp i smör.",
+    "Rör ner riset, häll i vinet.",
+    "Tillsätt varm buljong lite i taget under omrörning, ca 18 min.",
+    "Rör ner parmesan och en klick smör."
+   ]
+  },
+  {
+   "id": 26,
+   "namn": "Räkpasta med vitlök & chili",
+   "emoji": "🦐",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "pasta",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "räkor",
+     "mangd": 300,
+     "enhet": "g"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 3,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "chili",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "citron",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "körsbärstomater",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "rucola",
+     "mangd": 65,
+     "enhet": "g"
+    }
+   ],
+   "steg": [
+    "Koka pastan.",
+    "Fräs vitlök och chili i olja, tillsätt tomaterna.",
+    "Vänd ner räkorna, bara värm.",
+    "Blanda med pasta, citron och rucola."
+   ]
+  },
+  {
+   "id": 27,
+   "namn": "Shakshuka",
+   "emoji": "🍳",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "ägg",
+     "mangd": 6,
+     "enhet": "st"
+    },
+    {
+     "namn": "krossade tomater",
+     "mangd": 800,
+     "enhet": "g"
+    },
+    {
+     "namn": "paprika",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "gul lök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 2,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "spiskummin",
+     "mangd": 1,
+     "enhet": "tsk"
+    },
+    {
+     "namn": "paprikapulver",
+     "mangd": 1,
+     "enhet": "tsk"
+    },
+    {
+     "namn": "fetaost",
+     "mangd": 150,
+     "enhet": "g"
+    },
+    {
+     "namn": "pitabröd",
+     "mangd": 4,
+     "enhet": "st"
+    }
+   ],
+   "steg": [
+    "Fräs lök, paprika, vitlök och kryddor.",
+    "Tillsätt tomaterna, puttra 10 min.",
+    "Gör gropar och knäck i äggen, lock på 6–8 min.",
+    "Smula över feta. Doppa bröd!"
+   ]
+  },
+  {
+   "id": 28,
+   "namn": "Couscoussallad med kyckling",
+   "emoji": "🥗",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "snabb",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "couscous",
+     "mangd": 3,
+     "enhet": "dl"
+    },
+    {
+     "namn": "kycklingfilé",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "gurka",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "körsbärstomater",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "fetaost",
+     "mangd": 150,
+     "enhet": "g"
+    },
+    {
+     "namn": "rödlök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "citron",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Häll kokande vatten över couscousen, lock på 5 min.",
+    "Stek kycklingen.",
+    "Hacka grönsakerna.",
+    "Blanda allt med citron och olja."
+   ]
+  },
+  {
+   "id": 29,
+   "namn": "Tortillapizza",
+   "emoji": "🍕",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "snabb",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "tortillabröd",
+     "mangd": 8,
+     "enhet": "st"
+    },
+    {
+     "namn": "passerade tomater",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "riven ost",
+     "mangd": 200,
+     "enhet": "g"
+    },
+    {
+     "namn": "skinka",
+     "mangd": 150,
+     "enhet": "g"
+    },
+    {
+     "namn": "champinjoner",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "oregano",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Sätt ugnen på 250°.",
+    "Bred tomat på bröden, strö över oregano.",
+    "Toppa med skinka, svamp och ost.",
+    "Grädda 6–8 min tills krispigt."
+   ]
+  },
+  {
+   "id": 30,
+   "namn": "Gnocchi med tomat & mozzarella",
+   "emoji": "🧀",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "gnocchi",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "krossade tomater",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 2,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "mozzarella",
+     "mangd": 125,
+     "enhet": "g"
+    },
+    {
+     "namn": "färsk basilika",
+     "mangd": 1,
+     "enhet": "kruka"
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Stek gnocchin gyllene i olja.",
+    "Tillsätt vitlök och tomater, puttra 5 min.",
+    "Riv över mozzarella, gratinera eller lock på.",
+    "Toppa med basilika."
+   ]
+  },
+  {
+   "id": 31,
+   "namn": "Snabb nudelsoppa med ägg",
+   "emoji": "🍜",
+   "tid": 15,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "snabb",
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "risnudlar",
+     "mangd": 200,
+     "enhet": "g"
+    },
+    {
+     "namn": "ägg",
+     "mangd": 4,
+     "enhet": "st"
+    },
+    {
+     "namn": "buljongtärning",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "soja",
+     "mangd": 3,
+     "enhet": "msk"
+    },
+    {
+     "namn": "färsk ingefära",
+     "mangd": 1,
+     "enhet": "bit"
+    },
+    {
+     "namn": "salladslök",
+     "mangd": 3,
+     "enhet": "st"
+    },
+    {
+     "namn": "sockerärtor",
+     "mangd": 150,
+     "enhet": "g"
+    },
+    {
+     "namn": "sambal oelek",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka 1,5 l buljong med ingefära och soja.",
+    "Koka äggen 7 min.",
+    "Lägg nudlar och sockerärtor i buljongen 3 min.",
+    "Toppa med halverade ägg, salladslök och sambal."
+   ]
+  },
+  {
+   "id": 32,
+   "namn": "Kyckling med jordnötssås",
+   "emoji": "🥜",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "kycklinglårfilé",
+     "mangd": 600,
+     "enhet": "g"
+    },
+    {
+     "namn": "jasminris",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "jordnötssmör",
+     "mangd": 3,
+     "enhet": "msk"
+    },
+    {
+     "namn": "kokosmjölk",
+     "mangd": 400,
+     "enhet": "ml"
+    },
+    {
+     "namn": "soja",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "lime",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "röd currypasta",
+     "mangd": 1,
+     "enhet": "msk"
+    },
+    {
+     "namn": "broccoli",
+     "mangd": 1,
+     "enhet": "st"
+    }
+   ],
+   "steg": [
+    "Koka riset.",
+    "Stek kycklingen i bitar.",
+    "Rör ner currypasta, jordnötssmör, kokosmjölk och soja. Puttra 8 min.",
+    "Koka broccolin. Pressa lime över."
+   ]
+  },
+  {
+   "id": 33,
+   "namn": "Laxpasta med spenat & citron",
+   "emoji": "🐟",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "pasta",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "laxfilé",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "spenat",
+     "mangd": 65,
+     "enhet": "g"
+    },
+    {
+     "namn": "matlagningsgrädde",
+     "mangd": 2.5,
+     "enhet": "dl"
+    },
+    {
+     "namn": "citron",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 1,
+     "enhet": "klyfta"
+    },
+    {
+     "namn": "parmesan",
+     "mangd": 50,
+     "enhet": "g"
+    }
+   ],
+   "steg": [
+    "Koka pastan.",
+    "Stek laxen i bitar.",
+    "Häll i grädde, vitlök och citronskal.",
+    "Vänd ner spenat och pasta. Riv över parmesan."
+   ]
+  },
+  {
+   "id": 34,
+   "namn": "Hamburgare med pommes",
+   "emoji": "🍔",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "hamburgare",
+     "mangd": 4,
+     "enhet": "st"
+    },
+    {
+     "namn": "hamburgerbröd",
+     "mangd": 4,
+     "enhet": "st"
+    },
+    {
+     "namn": "ugnspommes",
+     "mangd": 750,
+     "enhet": "g"
+    },
+    {
+     "namn": "cheddar",
+     "mangd": 4,
+     "enhet": "skivor"
+    },
+    {
+     "namn": "sallad",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "tomat",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "rödlök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "ketchup",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "senap",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Ugnsbaka pommesen.",
+    "Stek burgarna, lägg på ost sista minuten.",
+    "Rosta bröden.",
+    "Bygg och njut."
+   ]
+  },
+  {
+   "id": 35,
+   "namn": "Raggmunk med fläsk",
+   "emoji": "🥓",
+   "tid": 30,
+   "portioner": 4,
+   "taggar": [
+    "billig"
+   ],
+   "ingredienser": [
+    {
+     "namn": "potatis",
+     "mangd": 800,
+     "enhet": "g"
+    },
+    {
+     "namn": "vetemjöl",
+     "mangd": 2,
+     "enhet": "dl"
+    },
+    {
+     "namn": "mjölk",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "ägg",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "rimmat sidfläsk",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "lingonsylt",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "smör",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "salt",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Vispa mjöl, mjölk, ägg och salt till smet.",
+    "Riv potatisen och blanda i.",
+    "Stek fläsket krispigt.",
+    "Stek tunna raggmunkar i smör. Servera med lingon."
+   ]
+  },
+  {
+   "id": 36,
+   "namn": "Grekisk pastasallad",
+   "emoji": "🫒",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "pasta",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "fetaost",
+     "mangd": 150,
+     "enhet": "g"
+    },
+    {
+     "namn": "gurka",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "körsbärstomater",
+     "mangd": 250,
+     "enhet": "g"
+    },
+    {
+     "namn": "oliver",
+     "mangd": 1,
+     "enhet": "burk"
+    },
+    {
+     "namn": "rödlök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "oregano",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    },
+    {
+     "namn": "citron",
+     "mangd": 1,
+     "enhet": "st"
+    }
+   ],
+   "steg": [
+    "Koka och skölj pastan kall.",
+    "Hacka grönsakerna.",
+    "Blanda med feta, oliver, olja, citron och oregano.",
+    "Perfekt i matlådan i morgon."
+   ]
+  },
+  {
+   "id": 37,
+   "namn": "Stekt ris med ägg",
+   "emoji": "🍚",
+   "tid": 20,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "snabb",
+    "billig",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "ris",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "ägg",
+     "mangd": 4,
+     "enhet": "st"
+    },
+    {
+     "namn": "frysta ärtor",
+     "mangd": 200,
+     "enhet": "g"
+    },
+    {
+     "namn": "morot",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "salladslök",
+     "mangd": 3,
+     "enhet": "st"
+    },
+    {
+     "namn": "soja",
+     "mangd": 3,
+     "enhet": "msk"
+    },
+    {
+     "namn": "vitlök",
+     "mangd": 2,
+     "enhet": "klyftor"
+    },
+    {
+     "namn": "olja",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Koka riset (eller använd gårdagens!).",
+    "Woka morot, vitlök och ärtor.",
+    "Skjut åt sidan, rör ihop äggen i pannan.",
+    "Vänd ner riset och soja. Toppa med salladslök."
+   ]
+  },
+  {
+   "id": 38,
+   "namn": "Thaigryta med tofu",
+   "emoji": "🥥",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "tofu",
+     "mangd": 400,
+     "enhet": "g"
+    },
+    {
+     "namn": "röd currypasta",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "kokosmjölk",
+     "mangd": 400,
+     "enhet": "ml"
+    },
+    {
+     "namn": "paprika",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "sockerärtor",
+     "mangd": 150,
+     "enhet": "g"
+    },
+    {
+     "namn": "lime",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "färsk koriander",
+     "mangd": 1,
+     "enhet": "kruka"
+    },
+    {
+     "namn": "jasminris",
+     "mangd": 4,
+     "enhet": "dl"
+    },
+    {
+     "namn": "soja",
+     "mangd": 1,
+     "enhet": "msk"
+    }
+   ],
+   "steg": [
+    "Koka riset.",
+    "Stek tofun i tärningar gyllene.",
+    "Fräs currypastan, häll i kokosmjölk, paprika och sockerärtor, 5 min.",
+    "Vänd ner tofun, smaka av med lime och soja. Toppa med koriander."
+   ]
+  },
+  {
+   "id": 39,
+   "namn": "Kycklingfajitas",
+   "emoji": "🫑",
+   "tid": 25,
+   "portioner": 4,
+   "taggar": [
+    "snabb"
+   ],
+   "ingredienser": [
+    {
+     "namn": "kycklingfilé",
+     "mangd": 500,
+     "enhet": "g"
+    },
+    {
+     "namn": "paprika",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "rödlök",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "tortillabröd",
+     "mangd": 8,
+     "enhet": "st"
+    },
+    {
+     "namn": "tacokrydda",
+     "mangd": 1,
+     "enhet": "påse"
+    },
+    {
+     "namn": "avokado",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "lime",
+     "mangd": 1,
+     "enhet": "st"
+    },
+    {
+     "namn": "crème fraiche",
+     "mangd": 2,
+     "enhet": "dl"
+    }
+   ],
+   "steg": [
+    "Strimla kyckling, paprika och lök.",
+    "Stek hett med tacokryddan.",
+    "Mosa avokado med lime och salt.",
+    "Rulla in i varma tortillas."
+   ]
+  },
+  {
+   "id": 40,
+   "namn": "Potatis- & purjolökssoppa",
+   "emoji": "🥔",
+   "tid": 30,
+   "portioner": 4,
+   "taggar": [
+    "veg",
+    "billig",
+    "matlåda"
+   ],
+   "ingredienser": [
+    {
+     "namn": "potatis",
+     "mangd": 600,
+     "enhet": "g"
+    },
+    {
+     "namn": "purjolök",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "buljongtärning",
+     "mangd": 2,
+     "enhet": "st"
+    },
+    {
+     "namn": "matlagningsgrädde",
+     "mangd": 2,
+     "enhet": "dl"
+    },
+    {
+     "namn": "smör",
+     "mangd": 2,
+     "enhet": "msk"
+    },
+    {
+     "namn": "rostbröd",
+     "mangd": 4,
+     "enhet": "skivor"
+    },
+    {
+     "namn": "timjan",
+     "mangd": null,
+     "enhet": ""
+    }
+   ],
+   "steg": [
+    "Fräs purjolöken i smör.",
+    "Tillsätt tärnad potatis, buljong och 1 l vatten. Koka 15 min.",
+    "Mixa med grädde och timjan.",
+    "Servera med rostat bröd."
+   ]
+  }
+ ]
+}
