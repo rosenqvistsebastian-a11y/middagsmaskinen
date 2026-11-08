@@ -24,8 +24,10 @@
     <section class="view active" id="view-recept" aria-label="Recept">
       <h1 class="view-title">Vad ska vi äta?</h1>
       <button class="shake-hint" id="shakeHint">📳 Slå på skaka-läge</button>
-      <input class="search" id="search" type="search" placeholder="Sök recept eller råvara…" autocomplete="off">
+      <input class="search" id="search" type="search" placeholder="Sök t.ex. kyckling, fisk, bönor, lax…" autocomplete="off">
+      <div class="chips scroll-x" id="proteinChips" role="group" aria-label="Sök på protein"></div>
       <div class="chips" id="tagFilter" role="group" aria-label="Filter"></div>
+      <p class="search-info" id="searchInfo" hidden></p>
       <div class="recipe-list" id="recipeList"></div>
     </section>
 

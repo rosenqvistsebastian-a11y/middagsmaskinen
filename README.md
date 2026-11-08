@@ -4,7 +4,8 @@ En mobil-PWA på svenska som svarar på den eviga frågan **"vad ska vi äta?"**
 Inget login, inga servrar – allt sparas i telefonen och funkar offline.
 
 ## Funktioner
-- **Recept** – 40 vardagsrätter (max 30 min) med taggarna snabb / billig / veg / matlåda, sök och filter.
+- **Recept** – 40 vardagsrätter (max 30 min) med taggarna snabb / billig / veg / matlåda. Smart sökning på protein
+  ("kyckling", "fisk", "kött", "bönor", "kyckling och ris") och snabbknappar 🐔 🐟 🦐 🥩 🥓 🥚 🫘 🧀 🌱.
 - **Middagsdejt 💘** – Tinder för middagar. Swipea höger = gilla (receptet visas direkt), vänster = nej.
   Gillade rätter blir favoriter och dyker oftare upp i veckomenyn och "Överraska mig".
 - **Mitt kylskåp 🧊** – skriv ("ägg, pasta, lök") eller bocka i vad du har. Appen visar recepten som använder mest av det.

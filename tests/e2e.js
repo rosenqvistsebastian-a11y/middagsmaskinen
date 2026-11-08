@@ -36,8 +36,25 @@ const ok = (cond, msg) => { console.log((cond ? '✅ ' : '❌ ') + msg); if (!co
   await page.click('[data-tag="alla"]');
   await page.fill('#search', 'lax');
   ok(await page.locator('#recipeList .rcard').count() >= 2, 'sök "lax" hittar recept');
+  // Smart sökning på protein
+  await page.fill('#search', 'fisk');
+  const fisk = await page.locator('#recipeList .rname').allTextContents();
+  ok(fisk.length === 4 && fisk.every((n) => /lax|torsk|fisk/i.test(n)), `sök "fisk": ${fisk.join(', ')}`);
+  await page.fill('#search', 'färs');
+  ok(!(await page.locator('#recipeList .rname').allTextContents()).some((n) => /curry|soppa|tortellini/i.test(n)), '"färs" ger inte "färsk basilika"-rätter');
+  await page.fill('#search', 'kyckling och ris');
+  ok(await page.locator('#recipeList .rcard').count() === 2, 'sök "kyckling och ris": båda måste finnas');
   await page.fill('#search', '');
-  await page.locator('#search').dispatchEvent('input');
+  await page.click('[data-protein="kyckling"]');
+  ok(await page.locator('#recipeList .rcard').count() === 6 && (await page.inputValue('#search')) === 'kyckling', 'proteinknapp 🐔 Kyckling: 6 recept');
+  ok((await page.textContent('#searchInfo')).includes('6 recept med kyckling'), 'sökrubrik: ' + (await page.textContent('#searchInfo')).replace('rensa', '').trim());
+  ok((await page.locator('#recipeList .hit').first().textContent()).includes('kyckling'), 'träff visas på kortet: ' + await page.locator('#recipeList .hit').first().textContent());
+  await page.click('[data-tag="matlåda"]');
+  ok(await page.locator('#recipeList .rcard').count() === 4, 'kyckling + matlåda kombineras: 4 recept');
+  await shot('11-sok');
+  await page.click('[data-tag="alla"]');
+  await page.click('#clearSearch');
+  ok(await page.locator('#recipeList .rcard').count() === 40 && (await page.inputValue('#search')) === '', '"rensa" visar alla 40 igen');
 
   // Kylskåp
   await page.click('[data-view="kyl"]');

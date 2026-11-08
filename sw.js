@@ -1,5 +1,5 @@
 /* Service worker: appen funkar helt offline. Höj VERSION vid ändringar. */
-const VERSION = 'mm-v2';
+const VERSION = 'mm-v3';
 const FILES = ['./', 'index.html', 'style.css', 'app.js', 'recipes.json', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'];
 

@@ -37,3 +37,6 @@ Alla uppgifter klara. `node tests/e2e.js` → 25/25 gröna (iPhone 13-vy, offlin
 - Chromium kräver numera tillstånd för rörelsesensorer (som iOS) -> skaka-läget slås på via knapp (användargest).
 - Shakshuka tappade taggen "billig" – kostar ~109 kr/4 port enligt prislistan. Gräns för billig: ≤100 kr/4 port.
 - Status omgång 2: `node tests/e2e.js` -> 44/44 gröna, 6 körningar i rad.
+
+## Omgång 3
+- [x] 24. Smart sökning: protein/kategorier ("fisk", "kött", "bönor"), plural, flera ord ("kyckling och ris"), proteinknappar, träff visas på kortet

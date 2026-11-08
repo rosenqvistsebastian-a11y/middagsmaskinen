@@ -177,12 +177,78 @@ function cardHtml(r, opts = {}) {
       (m.offer ? `<span class="offer-txt">🏷️ ${m.offer} på erbjudande</span>` : '') +
       `</div><div class="match-bar"><i style="width:${pct}%"></i></div>`;
   }
+  if (opts.hits?.length) {
+    extra += `<div class="rmeta hits">${opts.hits.map((n) => {
+      const g = r.ingredienser.find((x) => x.namn === n);
+      return `<span class="hit">🔍 ${esc(n)}${g && g.mangd != null ? ` ${esc(fmtQty(g, r))}` : ''}</span>`; }).join('')}</div>`;
+  }
   const liked = state.likes.includes(r.id) ? ' ❤️' : '';
   return `<button class="rcard" data-open="${r.id}">
     <span class="remoji">${r.emoji}</span>
     <span class="rbody"><span class="rname">${esc(r.namn)}${liked}</span>
       <span class="rmeta"><span>⏱ ${r.tid} min</span><span>💰 ${kr(costOf(r).perPort)}/port</span>${tagsHtml(r)}</span>${extra}</span>
   </button>`;
+}
+
+/* ---------- Smart sökning: protein, kategorier och synonymer ---------- */
+const PROTEINER = [
+  { sok: 'kyckling', label: '🐔 Kyckling', ingr: ['kycklingfilé', 'kycklinglårfilé'] },
+  { sok: 'fisk', label: '🐟 Fisk', ingr: ['laxfilé', 'torskfilé', 'fiskpinnar'] },
+  { sok: 'räkor', label: '🦐 Räkor', ingr: ['räkor'] },
+  { sok: 'färs', label: '🥩 Färs & kött', ingr: ['nötfärs', 'köttbullar', 'hamburgare'] },
+  { sok: 'fläsk', label: '🥓 Fläsk & korv', ingr: ['bacon', 'falukorv', 'rimmat sidfläsk', 'skinka', 'pyttipanna'] },
+  { sok: 'ägg', label: '🥚 Ägg', ingr: ['ägg'] },
+  { sok: 'bönor', label: '🫘 Bönor & linser', ingr: ['kidneybönor', 'svarta bönor', 'kikärtor', 'röda linser', 'falafel'] },
+  { sok: 'halloumi', label: '🧀 Halloumi & feta', ingr: ['halloumi', 'fetaost', 'mozzarella'] },
+  { sok: 'tofu', label: '🌱 Tofu', ingr: ['tofu'] },
+];
+// Sökord som betyder en hel grupp råvaror
+const SOK_GRUPPER = {
+  'fisk': ['laxfilé', 'torskfilé', 'fiskpinnar'], 'skaldjur': ['räkor'], 'kött': ['nötfärs', 'köttbullar', 'hamburgare', 'bacon', 'falukorv', 'rimmat sidfläsk', 'skinka'],
+  'färs': ['nötfärs'], 'fläsk': ['bacon', 'rimmat sidfläsk', 'skinka'], 'gris': ['bacon', 'falukorv', 'rimmat sidfläsk', 'skinka'],
+  'korv': ['falukorv'], 'nöt': ['nötfärs', 'hamburgare', 'köttbullar'], 'bönor': ['kidneybönor', 'svarta bönor', 'kikärtor'],
+  'baljväxter': ['kidneybönor', 'svarta bönor', 'kikärtor', 'röda linser', 'falafel'], 'linser': ['röda linser'],
+  'ost': ['riven ost', 'parmesan', 'fetaost', 'halloumi', 'mozzarella', 'cheddar'],
+  'kyckling': ['kycklingfilé', 'kycklinglårfilé'], 'nudlar': ['äggnudlar', 'risnudlar'], 'ris': ['ris', 'jasminris', 'arborioris'],
+};
+/* Ett sökord -> mängd råvaror (null = inga råvaror, bara namnsök) */
+function termIngredients(t) {
+  const sing = t.replace(/(er|ar|or|na|en)$/, '');      // "kycklingar" -> "kyckling", "tomater" -> "tomat"
+  const grupp = SOK_GRUPPER[t] || SOK_GRUPPER[sing];
+  // Känd grupp ("färs", "ost") -> bara gruppen, annars blir "färsk basilika" färs och "ostronsås" ost
+  if (grupp) return new Set(grupp);
+  const set = new Set();
+  for (const n of Object.keys(DATA.ingredienser)) {
+    if (DATA.basvaror.includes(n)) continue;
+    if (n.includes(t) || (sing.length >= 3 && n.includes(sing))) set.add(n);
+  }
+  findIngredients(t).forEach((n) => set.add(n));
+  return set;
+}
+/* "kyckling och ris" / "lax, citron" -> alla ord måste matcha */
+function searchRecipes(q, list) {
+  const terms = q.toLowerCase().split(/\s*(?:,|\+|\soch\s|\smed\s)\s*/).map((t) => t.trim()).filter((t) => t.length >= 2);
+  if (!terms.length) return list.map((r) => ({ r, hits: [] }));
+  const sets = terms.map((t) => [t, termIngredients(t)]);
+  const out = [];
+  for (const r of list) {
+    const hits = new Set();
+    let ok = true;
+    for (const [t, set] of sets) {
+      const ingHits = r.ingredienser.filter((g) => set.has(g.namn));
+      if (ingHits.length) ingHits.forEach((g) => hits.add(g.namn));
+      else if (!r.namn.toLowerCase().includes(t)) { ok = false; break; }
+    }
+    if (ok) out.push({ r, hits: [...hits] });
+  }
+  // recept där råvaran är huvudsaken (finns i namnet) först
+  const inName = (x) => terms.some((t) => x.r.namn.toLowerCase().includes(t) || x.hits.some((h) => x.r.namn.toLowerCase().includes(h.slice(0, 5))));
+  return out.sort((a, b) => inName(b) - inName(a));
+}
+function renderProteins() {
+  const q = state.query.trim().toLowerCase();
+  $('#proteinChips').innerHTML = PROTEINER.map((p) =>
+    `<button class="chip" data-protein="${p.sok}" aria-pressed="${q === p.sok}">${p.label}</button>`).join('');
 }
 
 /* ---------- Vy: Recept ---------- */
@@ -193,14 +259,18 @@ function renderFilter() {
 }
 function renderRecipes() {
   const q = state.query.trim().toLowerCase();
-  let list = DATA.recept.filter((r) => {
-    if (state.tag === 'favoriter') { if (!state.likes.includes(r.id)) return false; }
-    else if (state.tag !== 'alla' && !r.taggar.includes(state.tag)) return false;
-    if (!q) return true;
-    return r.namn.toLowerCase().includes(q) || r.ingredienser.some((g) => g.namn.includes(q));
+  const base = DATA.recept.filter((r) => {
+    if (state.tag === 'favoriter') return state.likes.includes(r.id);
+    return state.tag === 'alla' || r.taggar.includes(state.tag);
   });
-  $('#recipeList').innerHTML = list.length ? list.map((r) => cardHtml(r)).join('')
-    : `<p class="empty">${state.tag === 'favoriter' ? 'Inga favoriter än – gå på Middagsdejt och swipea höger! 💘' : 'Inga recept hittades 🤷'}</p>`;
+  const res = searchRecipes(q, base);
+  renderProteins();
+  $('#searchInfo').hidden = !q;
+  if (q) $('#searchInfo').innerHTML = res.length
+    ? `🔍 <b>${res.length}</b> recept med <b>${esc(q)}</b>${state.tag !== 'alla' ? ` <span class="muted">(${state.tag})</span>` : ''} <button class="link-btn" id="clearSearch">rensa</button>`
+    : `🔍 Inget med <b>${esc(q)}</b>${state.tag !== 'alla' ? ` bland ${state.tag}` : ''} <button class="link-btn" id="clearSearch">rensa</button>`;
+  $('#recipeList').innerHTML = res.length ? res.map(({ r, hits }) => cardHtml(r, { hits })).join('')
+    : `<p class="empty">${state.tag === 'favoriter' && !q ? 'Inga favoriter än – gå på Middagsdejt och swipea höger! 💘' : 'Inga recept hittades 🤷 Testa t.ex. "fisk", "kyckling" eller "bönor".'}</p>`;
 }
 
 /* ---------- Vy: Kylskåp & erbjudanden ---------- */
@@ -559,7 +629,14 @@ function showView(name) {
 
 function bindEvents() {
   document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => showView(t.dataset.view)));
-  $('#search').addEventListener('input', (e) => { state.query = e.target.value; renderRecipes(); });
+  $('#search').addEventListener('input', (e) => { state.query = e.target.value; save(); renderRecipes(); });
+  document.addEventListener('click', (e) => {
+    const p = e.target.closest('[data-protein]');
+    const c = e.target.closest('#clearSearch');
+    if (!p && !c) return;
+    state.query = p && state.query.trim().toLowerCase() !== p.dataset.protein ? p.dataset.protein : '';
+    $('#search').value = state.query; save(); renderRecipes();
+  });
 
   document.addEventListener('click', (e) => {
     const el = e.target.closest('[data-tag],[data-open],[data-close],[data-like],[data-addday],[data-swap],[data-check],[data-toggle],[data-unfridge],[data-unoffer],[data-closesurprise],#spinAgain,#deckReset');
