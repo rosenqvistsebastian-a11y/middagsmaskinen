@@ -26,3 +26,14 @@ Mobil-PWA på svenska som svarar på "vad ska vi äta?".
 
 ## Status
 Alla uppgifter klara. `node tests/e2e.js` → 25/25 gröna (iPhone 13-vy, offline, sparning).
+
+## Omgång 2
+- [x] 18. Portionsskala: välj antal portioner, mängder + inköpslista räknas om
+- [x] 19. Budgetmätare: ungefärliga priser per råvara, kostnad per rätt/vecka/portion, erbjudanden −25 %
+- [x] 20. Skaka mobilen = Överraska mig (magisk åtta-boll-stil)
+- [x] 21. Matlagningsläge: stora steg, swipe, skärmen hålls vaken, timer som piper
+- [x] 22. Veckans DJ: musiktips per kök (Spotify-sök), soundtrack för veckan
+- [x] 23. Utöka e2e-testet för allt ovan
+- Chromium kräver numera tillstånd för rörelsesensorer (som iOS) -> skaka-läget slås på via knapp (användargest).
+- Shakshuka tappade taggen "billig" – kostar ~109 kr/4 port enligt prislistan. Gräns för billig: ≤100 kr/4 port.
+- Status omgång 2: `node tests/e2e.js` -> 44/44 gröna, 6 körningar i rad.

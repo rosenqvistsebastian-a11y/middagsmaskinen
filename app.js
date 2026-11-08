@@ -39,7 +39,7 @@ let state = loadState();
 /* ---------- Lagring ---------- */
 function defaultState() {
   return { fridge: [], offers: [], offersText: '', week: Array(7).fill(null), checked: {}, extras: [],
-           likes: [], nopes: [], tag: 'alla', query: '' };
+           likes: [], nopes: [], tag: 'alla', query: '', portions: 4, shake: false };
 }
 function loadState() {
   try {
@@ -69,7 +69,37 @@ function toast(msg) {
 }
 
 function coreIngr(r) { return r.ingredienser.filter((g) => !DATA.basvaror.includes(g.namn)); }
-function fmtQty(g) { return g.mangd == null ? '' : `${fmtNum(g.mangd)} ${g.enhet}`.trim(); }
+/* Portioner: skala om mängder och avrunda till något man kan mäta */
+function scaleOf(r) { return state.portions / (r.portioner || 4); }
+function roundQty(n, e) {
+  if (e === 'g' || e === 'ml') return n >= 100 ? Math.round(n / 10) * 10 : Math.max(5, Math.round(n / 5) * 5);
+  return Math.max(0.5, Math.round(n * 2) / 2);
+}
+function unitLabel(e, n) {
+  if (e === 'klyfta' || e === 'klyftor') return n > 1 ? 'klyftor' : 'klyfta';
+  if (e === 'burk' || e === 'burkar') return n > 1 ? 'burkar' : 'burk';
+  return e;
+}
+function fmtQty(g, r) {
+  if (g.mangd == null) return '';
+  const n = r ? roundQty(g.mangd * scaleOf(r), g.enhet) : g.mangd;
+  return `${fmtNum(n)} ${unitLabel(g.enhet, n)}`.trim();
+}
+/* Budget: uppskattade normalpriser, erbjudanden antas ge 25 % rabatt */
+const OFFER_RABATT = 0.25;
+function ingCost(g, r) {
+  const p = g.mangd == null ? null : DATA.priser[g.namn]?.[g.enhet];
+  return p == null ? 0 : g.mangd * scaleOf(r) * p;
+}
+function costOf(r) {
+  let total = 0, saved = 0;
+  for (const g of r.ingredienser) {
+    const c = ingCost(g, r);
+    if (state.offers.includes(g.namn)) { total += c * (1 - OFFER_RABATT); saved += c * OFFER_RABATT; } else total += c;
+  }
+  return { total, saved, perPort: total / state.portions };
+}
+const kr = (n) => `${Math.round(n)} kr`;
 
 /* Hittar alla kända råvaror i en fritext ("Kycklingfilé 89:-/kg" -> ["kycklingfilé"]) */
 function findIngredients(text) {
@@ -151,7 +181,7 @@ function cardHtml(r, opts = {}) {
   return `<button class="rcard" data-open="${r.id}">
     <span class="remoji">${r.emoji}</span>
     <span class="rbody"><span class="rname">${esc(r.namn)}${liked}</span>
-      <span class="rmeta"><span>⏱ ${r.tid} min</span>${tagsHtml(r)}</span>${extra}</span>
+      <span class="rmeta"><span>⏱ ${r.tid} min</span><span>💰 ${kr(costOf(r).perPort)}/port</span>${tagsHtml(r)}</span>${extra}</span>
   </button>`;
 }
 
@@ -252,6 +282,8 @@ function renderWeek() {
   const has = state.week.some(Boolean);
   $('#makeWeek').textContent = has ? '🎲 Ny vecka, tack!' : '✨ Fixa veckan åt mig';
   $('#weekHint').hidden = !has;
+  $('#portionWeek').innerHTML = portionStepper();
+  renderBudget(); renderSoundtrack();
   $('#week').innerHTML = DAGAR.map((_, i) => `<div class="day">
       <div class="day-under"><span>🔄 Byt</span><span>Byt 🔄</span></div>
       <div class="day-card${state.week[i] ? '' : ' empty-day'}" data-day="${i}">${dayCardInner(i)}</div>
@@ -318,15 +350,18 @@ function shopItems() {
     const r = BY_ID.get(id);
     if (!r) continue;
     for (const g of coreIngr(r)) {
-      if (!map.has(g.namn)) map.set(g.namn, { namn: g.namn, avd: DATA.ingredienser[g.namn], qty: {}, recipes: new Set() });
+      if (!map.has(g.namn)) map.set(g.namn, { namn: g.namn, avd: DATA.ingredienser[g.namn], qty: {}, recipes: new Set(), cost: 0 });
       const it = map.get(g.namn);
       it.recipes.add(r.namn);
-      if (g.mangd != null) it.qty[g.enhet] = (it.qty[g.enhet] || 0) + g.mangd;
+      const e = g.enhet === 'klyfta' ? 'klyftor' : g.enhet === 'burkar' ? 'burk' : g.enhet;
+      if (g.mangd != null) it.qty[e] = (it.qty[e] || 0) + g.mangd * scaleOf(r);
+      it.cost += ingCost(g, r) * (state.offers.includes(g.namn) ? 1 - OFFER_RABATT : 1);
     }
   }
   const items = [...map.values()].map((it) => ({
     key: 'r:' + it.namn, namn: it.namn, avd: it.avd,
-    qty: Object.entries(it.qty).map(([e, n]) => `${fmtNum(n)} ${e}`).join(' + '),
+    qty: Object.entries(it.qty).map(([e, n]) => { const q = roundQty(n, e); return `${fmtNum(q)} ${unitLabel(e, q)}`; }).join(' + '),
+    cost: it.cost,
     home: state.fridge.includes(it.namn), offer: state.offers.includes(it.namn),
     note: [...it.recipes].join(', '),
   }));
@@ -353,7 +388,8 @@ function renderShop() {
   }
   $('#clearChecked').hidden = done === 0;
   const pct = toBuy.length ? Math.round((done / toBuy.length) * 100) : 100;
-  $('#shopProgress').innerHTML = `${left === 0 ? 'Allt i korgen! 🎉 Hem och laga mat.' : `${done} av ${toBuy.length} i korgen`}
+  const leftCost = toBuy.filter((i) => !state.checked[i.key]).reduce((a, i) => a + (i.cost || 0), 0);
+  $('#shopProgress').innerHTML = `${left === 0 ? 'Allt i korgen! 🎉 Hem och laga mat.' : `${done} av ${toBuy.length} i korgen · <span class="muted">≈ ${kr(leftCost)} kvar</span>`}
     <div class="match-bar"><i style="width:${pct}%"></i></div>`;
 
   const order = [...DATA.avdelningar, 'Övrigt'];
@@ -376,17 +412,23 @@ function openRecipe(id, banner = '') {
   if (!r) return;
   const liked = state.likes.includes(r.id);
   const inWeek = state.week.indexOf(r.id);
+  const cost = costOf(r);
+  sheetId = r.id;
   $('#sheet').innerHTML = `<div class="grab"></div>
     <button class="close" data-close aria-label="Stäng">✕</button>
     ${banner}
     <div class="hero">${r.emoji}</div>
     <h2>${esc(r.namn)}</h2>
-    <div class="rmeta"><span>⏱ ${r.tid} min</span><span>🍽 ${r.portioner} port</span>${tagsHtml(r)}</div>
+    <div class="rmeta"><span>⏱ ${r.tid} min</span>${tagsHtml(r)}</div>
+    <button class="btn big cook-start" data-cook="${r.id}">👩‍🍳 Börja laga!</button>
+    <div class="sheet-tools">${portionStepper()}
+      <div class="cost-pill">💰 ≈ ${kr(cost.total)} <span class="muted">(${kr(cost.perPort)}/port)</span>${cost.saved >= 1 ? `<br><span class="offer-txt small">🏷️ sparar ~${kr(cost.saved)}</span>` : ''}</div></div>
     <h3>Ingredienser</h3>
     <ul class="ing-list">${r.ingredienser.map((g) => `<li class="${state.fridge.includes(g.namn) ? 'has' : ''}">
-      <span>${esc(cap(g.namn))}${state.offers.includes(g.namn) ? ' <span class="offer-txt">🏷️</span>' : ''}</span><span class="qty">${esc(fmtQty(g))}</span></li>`).join('')}</ul>
+      <span>${esc(cap(g.namn))}${state.offers.includes(g.namn) ? ' <span class="offer-txt">🏷️</span>' : ''}</span><span class="qty">${esc(fmtQty(g, r))}</span></li>`).join('')}</ul>
     <h3>Gör så här</h3>
     <ol class="steps">${r.steg.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
+    ${djHtml(r)}
     <h3>${inWeek >= 0 ? `Ligger på ${DAGAR[inWeek].toLowerCase()} 📅 – flytta?` : 'Lägg i veckomenyn'}</h3>
     <div class="chips">${DAGAR.map((d, i) => `<button class="chip" data-addday="${i}" data-id="${r.id}" aria-pressed="${state.week[i] === r.id}">${d}</button>`).join('')}</div>
     <div class="sheet-actions">
@@ -396,7 +438,8 @@ function openRecipe(id, banner = '') {
   $('#sheet').hidden = false; $('#sheetBackdrop').hidden = false;
   $('#sheet').scrollTop = 0;
 }
-function closeSheet() { $('#sheet').hidden = true; $('#sheetBackdrop').hidden = true; }
+let sheetId = null;
+function closeSheet() { $('#sheet').hidden = true; $('#sheetBackdrop').hidden = true; sheetId = null; }
 
 function toggleLike(id) {
   id = +id;
@@ -472,6 +515,7 @@ function renderMatches() {
 
 /* ---------- Överraska mig ---------- */
 function surprise() {
+  if (cook) return;
   const pick = weightedPick(DATA.recept);
   const ov = $('#surprise'), reel = $('#slotReel');
   ov.hidden = false;
@@ -489,11 +533,12 @@ function surprise() {
   surprise._t = setTimeout(() => {
     ov.classList.remove('spinning');
     const t = todayIdx();
-    $('#surpriseResult').innerHTML = `<h2>${esc(pick.namn)}!</h2><p>⏱ ${pick.tid} min · ${pick.taggar.join(' · ') || 'vardagsklassiker'}</p>
+    $('#surpriseResult').innerHTML = `<p class="oracle">🎱 ${ORAKEL[Math.floor(Math.random() * ORAKEL.length)]}</p><h2>${esc(pick.namn)}!</h2><p>⏱ ${pick.tid} min · ${pick.taggar.join(' · ') || 'vardagsklassiker'}</p>
       <button class="btn" data-open="${pick.id}" data-closesurprise>Visa recept</button>
       <button class="btn" data-addday="${t}" data-id="${pick.id}" data-closesurprise>Vi äter det idag!</button><br>
       <button class="btn ghost" id="spinAgain">🎲 Snurra igen</button>
-      <button class="btn ghost" data-closesurprise>Stäng</button>`;
+      <button class="btn ghost" data-closesurprise>Stäng</button><br>
+      <button class="btn ghost small" id="shakeToggle">📳 Skaka-läge: ${state.shake ? 'PÅ' : 'av'}</button>`;
     confetti();
   }, 1850);
 }
@@ -587,6 +632,257 @@ function bindEvents() {
 }
 
 
+/* ========== Omgång 2: portioner, budget, DJ, matlagningsläge, timer, skaka ========== */
+const ORAKEL = ['Maskinen har talat:', 'Utan tvekan:', 'Stjärnorna i soppan säger:', 'Det står skrivet i såsen:',
+  'Mina källor säger ja:', 'Skakat, inte rört:', 'Kristallkulan ser…'];
+
+function portionStepper() {
+  return `<div class="stepper" role="group" aria-label="Portioner">
+    <button data-port="-1" aria-label="Färre portioner"${state.portions <= 1 ? ' disabled' : ''}>−</button>
+    <span>👥 <b class="port-n">${state.portions}</b> ${state.portions === 1 ? 'portion' : 'portioner'}</span>
+    <button data-port="1" aria-label="Fler portioner"${state.portions >= 12 ? ' disabled' : ''}>+</button></div>`;
+}
+function setPortions(delta) {
+  state.portions = Math.min(12, Math.max(1, state.portions + delta));
+  save();
+  renderWeek(); renderShop(); renderRecipes(); renderFridge(); renderMatches();
+  if (sheetId) { const top = $('#sheet').scrollTop; openRecipe(sheetId); $('#sheet').scrollTop = top; }
+}
+
+function renderBudget() {
+  const rs = state.week.map((id) => BY_ID.get(id)).filter(Boolean);
+  const el = $('#budget');
+  if (!rs.length) { el.hidden = true; return; }
+  el.hidden = false;
+  const costs = rs.map((r) => [r, costOf(r)]);
+  const total = costs.reduce((a, [, c]) => a + c.total, 0);
+  const saved = costs.reduce((a, [, c]) => a + c.saved, 0);
+  const per = total / (rs.length * state.portions);
+  const verdict = per < 20 ? 'Snålvargsnivå 🐺' : per < 30 ? 'Plånboksvänligt 👍' : per < 45 ? 'Lagom lyxigt ✨' : 'Fredagsmys hela veckan? 💸';
+  costs.sort((a, b) => b[1].total - a[1].total);
+  const max = costs[0][1].total;
+  el.innerHTML = `<div class="budget-head"><span>💰 Veckans matkostnad</span><b id="budgetTotal">≈ ${kr(total)}</b></div>
+    <div class="budget-sub">${kr(per)}/portion · <b>${verdict}</b>${saved >= 1 ? ` · <span class="offer-txt">🏷️ −${kr(saved)}</span>` : ''}</div>
+    <div class="budget-bars">${costs.map(([r, c]) => `<div class="bbar" data-open="${r.id}"><span>${r.emoji} ${esc(r.namn)}</span>
+      <i style="width:${Math.max(6, (c.total / max) * 100)}%"></i><b>${kr(c.total)}</b></div>`).join('')}</div>
+    <p class="muted small">Uppskattat med normalpriser för ${state.portions} portioner. Skafferivaror (salt, kryddor, sylt) ingår inte.</p>`;
+}
+
+/* --- Veckans DJ --- */
+const spotify = (q) => 'https://open.spotify.com/search/' + encodeURIComponent(q);
+function djHtml(r) {
+  const d = DATA.dj[r.kok];
+  if (!d) return '';
+  return `<div class="dj"><div class="dj-head">🎧 Middags-DJ:n spelar <b>${d.emoji} ${esc(d.namn)}</b></div>
+    ${d.lat.map((l) => `<a class="dj-song" href="${spotify(l)}" target="_blank" rel="noopener">▶ ${esc(l)}</a>`).join('')}</div>`;
+}
+function renderSoundtrack() {
+  const el = $('#soundtrack');
+  const days = state.week.map((id, i) => [i, BY_ID.get(id)]).filter(([, r]) => r);
+  if (!days.length) { el.hidden = true; return; }
+  el.hidden = false;
+  el.innerHTML = `<div class="budget-head"><span>🎧 Veckans soundtrack</span></div>
+    ${days.map(([i, r]) => { const d = DATA.dj[r.kok]; const l = d.lat[(r.id + i) % d.lat.length];
+      return `<a class="dj-day" href="${spotify(l)}" target="_blank" rel="noopener"><span class="day-name">${DAGAR[i]}</span>
+        <span><b>${d.emoji} ${esc(d.namn)}</b><br><span class="muted small">▶ ${esc(l)}</span></span></a>`; }).join('')}`;
+}
+
+/* --- Matlagningsläge --- */
+let cook = null; // { r, step, wake, done:Set }
+function cookSteps(r) {
+  return [{ title: 'Plocka fram', ingr: true }, ...r.steg.map((t, i) => ({ title: `Steg ${i + 1} av ${r.steg.length}`, text: t })),
+          { title: 'Smaklig måltid!', done: true }];
+}
+function minutesIn(text) {
+  const m = text.match(/(\d+)(?:\s*[–-]\s*(\d+))?\s*min/);
+  return m ? +(m[2] || m[1]) : 0;
+}
+async function requestWake() {
+  if (!cook || !('wakeLock' in navigator)) return;
+  try { cook.wake = await navigator.wakeLock.request('screen'); $('#wakeNote')?.removeAttribute('hidden'); } catch (e) { /* ok */ }
+}
+function openCook(id) {
+  const r = BY_ID.get(+id);
+  if (!r) return;
+  cook = { r, step: 0, wake: null, done: new Set() };
+  closeSheet();
+  $('#cook').hidden = false;
+  document.body.classList.add('no-scroll');
+  renderCook();
+  requestWake();
+}
+function closeCook() {
+  if (!cook) return;
+  try { cook.wake?.release(); } catch (e) { /* ok */ }
+  cook = null;
+  $('#cook').hidden = true;
+  document.body.classList.remove('no-scroll');
+}
+function renderCook() {
+  const { r, step } = cook;
+  const steps = cookSteps(r);
+  const s = steps[step];
+  const d = DATA.dj[r.kok];
+  const song = d.lat[step % d.lat.length];
+  let body = '';
+  if (s.ingr) {
+    body = `<ul class="cook-ingr">${r.ingredienser.map((g, i) => `<li><button data-cooking="${i}" class="${cook.done.has(i) ? 'got' : ''}">
+      <span class="box">${cook.done.has(i) ? '✓' : ''}</span><span>${esc(cap(g.namn))}</span><span class="qty">${esc(fmtQty(g, r))}</span></button></li>`).join('')}</ul>`;
+  } else if (s.done) {
+    body = `<div class="cook-done">🎉</div><p class="cook-text">Bra jobbat, kocken! Dags att äta.</p>
+      <button class="btn big" data-cookclose>Tillbaka till appen</button>`;
+  } else {
+    const min = minutesIn(s.text);
+    body = `<p class="cook-text">${esc(s.text)}</p>${min ? `<button class="btn timer-btn" data-timer="${min}">⏲ Starta timer ${min} min</button>` : ''}`;
+  }
+  $('#cook').innerHTML = `<div class="cook-top">
+      <button class="cook-x" data-cookclose aria-label="Stäng">✕</button>
+      <div class="cook-title">${r.emoji} ${esc(r.namn)} <span class="muted small">· ${state.portions} port</span></div></div>
+    <div class="cook-dots">${steps.map((_, i) => `<i class="${i === step ? 'on' : i < step ? 'past' : ''}"></i>`).join('')}</div>
+    <div class="cook-card" id="cookCard"><h2>${s.title}</h2>${body}</div>
+    <a class="dj-chip" href="${spotify(song)}" target="_blank" rel="noopener">🎧 ${d.emoji} ${esc(song)}</a>
+    <p class="muted small cook-note" id="wakeNote"${cook.wake ? '' : ' hidden'}>💡 Skärmen hålls vaken medan du lagar mat</p>
+    <div class="cook-nav">
+      <button class="btn ghost" data-cooknav="-1"${step === 0 ? ' disabled' : ''}>← Bakåt</button>
+      ${s.done ? '' : `<button class="btn" data-cooknav="1">${step === steps.length - 2 ? 'Klart! 🎉' : 'Nästa →'}</button>`}
+    </div>`;
+  if (s.done) { const box = document.createElement('div'); box.className = 'confetti'; $('#cook').appendChild(box); confettiIn(box); }
+  const card = $('#cookCard');
+  makeDraggable(card, {
+    onMove: (dx) => { card.style.transform = `translateX(${dx}px) rotate(${dx / 50}deg)`; },
+    onEnd: (dx) => { card.style.transform = ''; if (Math.abs(dx) > 70) cookNav(dx < 0 ? 1 : -1); },
+  });
+}
+function cookNav(dir) {
+  const n = cookSteps(cook.r).length;
+  const next = Math.min(n - 1, Math.max(0, cook.step + dir));
+  if (next === cook.step) return;
+  cook.step = next;
+  renderCook();
+  const card = $('#cookCard');
+  card.classList.add(dir > 0 ? 'in-right' : 'in-left');
+}
+function confettiIn(box) {
+  const bits = ['🎉', '✨', '🍝', '🌮', '🥕', '🧀', '🍅', '⭐'];
+  box.innerHTML = Array.from({ length: 36 }, () =>
+    `<i style="left:${Math.random() * 100}%;animation-duration:${1.6 + Math.random() * 1.8}s;animation-delay:${Math.random() * .4}s">${bits[Math.floor(Math.random() * bits.length)]}</i>`).join('');
+}
+
+/* --- Timer (fortsätter även om du stänger matlagningsläget) --- */
+let timer = null; // { end, label, iv, ringing }
+let audioCtx = null;
+function startTimer(min) {
+  try { audioCtx ||= new (window.AudioContext || window.webkitAudioContext)(); audioCtx.resume(); } catch (e) { /* ok */ }
+  stopTimer();
+  timer = { end: Date.now() + min * 60000, label: cook ? cook.r.emoji : '⏲', ringing: false };
+  timer.iv = setInterval(tickTimer, 250);
+  tickTimer();
+  toast(`⏲ Timer på ${min} min startad`);
+}
+function stopTimer() {
+  if (timer) clearInterval(timer.iv);
+  timer = null;
+  $('#timerPill').hidden = true;
+  $('#timerPill').classList.remove('ringing');
+}
+function beep() {
+  if (!audioCtx) return;
+  [0, 0.35, 0.7].forEach((t) => {
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.frequency.value = 880; o.type = 'triangle';
+    g.gain.setValueAtTime(0.0001, audioCtx.currentTime + t);
+    g.gain.exponentialRampToValueAtTime(0.4, audioCtx.currentTime + t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + t + 0.3);
+    o.connect(g).connect(audioCtx.destination); o.start(audioCtx.currentTime + t); o.stop(audioCtx.currentTime + t + 0.32);
+  });
+}
+function tickTimer() {
+  if (!timer) return;
+  const pill = $('#timerPill');
+  pill.hidden = false;
+  const left = Math.max(0, Math.ceil((timer.end - Date.now()) / 1000));
+  if (left > 0) {
+    $('#timerText').textContent = `${timer.label} ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`;
+    return;
+  }
+  if (!timer.ringing) {
+    timer.ringing = true;
+    pill.classList.add('ringing');
+    $('#timerText').textContent = '⏰ Klart! Tryck för att stänga';
+    navigator.vibrate?.([300, 120, 300, 120, 600]);
+    beep();
+    toast('⏰ Pling! Timern är klar');
+  } else if ((Date.now() - timer.end) % 4000 < 260) beep();
+}
+
+/* --- Skaka mobilen = Överraska mig --- */
+let shakeBound = false, lastAcc = null, shakeHits = [], shakeCool = 0;
+function onMotion(e) {
+  const a = e.accelerationIncludingGravity || e.acceleration;
+  if (!a || a.x == null) return;
+  if (lastAcc) {
+    const d = Math.abs(a.x - lastAcc.x) + Math.abs(a.y - lastAcc.y) + Math.abs(a.z - lastAcc.z);
+    const now = Date.now();
+    if (d > 25) {
+      shakeHits = shakeHits.filter((t) => now - t < 800);
+      shakeHits.push(now);
+      if (shakeHits.length >= 3 && now > shakeCool) {
+        shakeCool = now + 3000; shakeHits = [];
+        navigator.vibrate?.(80);
+        surprise();
+      }
+    }
+  }
+  lastAcc = { x: a.x, y: a.y, z: a.z };
+}
+async function enableShake(fromGesture) {
+  if (typeof DeviceMotionEvent === 'undefined') return false;
+  if (typeof DeviceMotionEvent.requestPermission === 'function') { // iOS kräver ett tryck först
+    if (!fromGesture) return false;
+    try { if (await DeviceMotionEvent.requestPermission() !== 'granted') return false; } catch (e) { return false; }
+  }
+  if (!shakeBound) { window.addEventListener('devicemotion', onMotion); shakeBound = true; }
+  return true;
+}
+function disableShake() { window.removeEventListener('devicemotion', onMotion); shakeBound = false; }
+async function toggleShake(btn) {
+  if (state.shake) { state.shake = false; disableShake(); toast('Skaka-läge av'); }
+  else if (await enableShake(true)) { state.shake = true; toast('📳 Skaka mobilen när du är hungrig!'); }
+  else toast('Din mobil vill inte dela skakningar 😢');
+  save();
+  if (btn) btn.textContent = `📳 Skaka-läge: ${state.shake ? 'PÅ' : 'av'}`;
+  const h = $('#shakeHint'); if (h) h.textContent = state.shake ? '📳 Skaka-läge är på – skaka för att slumpa!' : '📳 Slå på skaka-läge';
+}
+
+function initExtras() {
+  $('#shakeHint').textContent = state.shake ? '📳 Skaka-läge är på – skaka för att slumpa!' : '📳 Slå på skaka-läge';
+  if (state.shake) enableShake(false).then((ok) => {
+    if (!ok) document.addEventListener('pointerdown', () => enableShake(true), { once: true });
+  });
+  document.addEventListener('visibilitychange', () => { if (cook && document.visibilityState === 'visible') requestWake(); });
+  $('#timerPill').addEventListener('click', (e) => {
+    if (timer?.ringing || e.target.closest('#timerStop')) stopTimer();
+  });
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-port],[data-cook],[data-cooknav],[data-cookclose],[data-timer],[data-cooking],#shakeToggle,#shakeHint');
+    if (!el) return;
+    const d = el.dataset;
+    if (d.port) setPortions(+d.port);
+    else if (d.cook) openCook(d.cook);
+    else if (d.cooknav) cookNav(+d.cooknav);
+    else if ('cookclose' in d) closeCook();
+    else if (d.timer) startTimer(+d.timer);
+    else if (d.cooking) { const i = +d.cooking; cook.done.has(i) ? cook.done.delete(i) : cook.done.add(i); renderCook(); }
+    else if (el.id === 'shakeToggle' || el.id === 'shakeHint') toggleShake(el.id === 'shakeToggle' ? el : null);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!cook) return;
+    if (e.key === 'ArrowRight') cookNav(1);
+    if (e.key === 'ArrowLeft') cookNav(-1);
+    if (e.key === 'Escape') closeCook();
+  });
+}
+
 /* ---------- Start ---------- */
 async function init() {
   const res = await fetch('recipes.json');
@@ -598,6 +894,7 @@ async function init() {
   bindEvents();
   renderFilter(); renderRecipes(); renderFridge(); renderWeek(); renderShop();
   refillDeck(); renderDeck();
+  initExtras();
   let v = 'recept';
   try { v = sessionStorage.getItem('mm:view') || v; } catch (e) { /* ok */ }
   if (location.hash) v = location.hash.slice(1);

@@ -13,7 +13,13 @@ Inget login, inga servrar – allt sparas i telefonen och funkar offline.
 - **Veckomeny 📅** – en knapptryckning ger 7 rätter. Swipea en dag åt sidan (eller tryck 🔄) för att byta.
 - **Inköpslista 🛒** – skapas automatiskt från veckomenyn, summerar mängder, sorteras efter butiksavdelning,
   markerar vad du redan har hemma och vad som är på erbjudande. Bocka av i butiken.
-- **🎲 Överraska mig** – enarmad bandit med konfetti.
+- **🎲 Överraska mig** – enarmad bandit med konfetti. Slå på **📳 skaka-läge** och skaka mobilen som en magisk åtta-boll.
+- **👥 Portioner** – välj 1–12 portioner, alla mängder och inköpslistan räknas om.
+- **💰 Budgetmätare** – ungefärliga normalpriser per råvara ger kostnad per rätt, portion och vecka.
+  Råvaror på erbjudande räknas med ca 25 % rabatt.
+- **👩‍🍳 Matlagningsläge** – stora steg, swipea framåt, skärmen hålls vaken, timer som piper och vibrerar
+  (läser själv av "15 min" ur steget).
+- **🎧 Veckans DJ** – musiktips per kök med Spotify-sökningar, plus ett soundtrack för hela veckan.
 
 ## Kör
 ```bash
@@ -23,7 +29,7 @@ python3 -m http.server 8000
 (Service worker kräver https eller localhost – lägg den t.ex. på GitHub Pages för riktig installation.)
 
 ## Utveckla
-- Recepten genereras med kontroller (≤30 min, veg utan kött osv): `python3 tools/build_recipes.py`
+- Recepten, priserna och DJ-listorna genereras med kontroller (≤30 min, veg utan kött, billig ≤100 kr/4 port osv): `python3 tools/build_recipes.py`
 - Test (Playwright, mobilvy + offline): `node tests/e2e.js`
 - Höj `VERSION` i `sw.js` när filer ändras, så får mobilen nya versionen.
 

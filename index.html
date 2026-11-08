@@ -23,6 +23,7 @@
     <!-- Recept -->
     <section class="view active" id="view-recept" aria-label="Recept">
       <h1 class="view-title">Vad ska vi äta?</h1>
+      <button class="shake-hint" id="shakeHint">📳 Slå på skaka-läge</button>
       <input class="search" id="search" type="search" placeholder="Sök recept eller råvara…" autocomplete="off">
       <div class="chips" id="tagFilter" role="group" aria-label="Filter"></div>
       <div class="recipe-list" id="recipeList"></div>
@@ -71,8 +72,11 @@
     <section class="view" id="view-vecka" aria-label="Veckomeny">
       <h1 class="view-title">Veckomeny</h1>
       <button class="btn big" id="makeWeek">✨ Fixa veckan åt mig</button>
+      <div class="week-tools" id="portionWeek"></div>
       <p class="muted small hint" id="weekHint">Swipea en rätt åt sidan för att byta den.</p>
       <div class="week" id="week"></div>
+      <div class="panel budget" id="budget" hidden></div>
+      <div class="panel soundtrack" id="soundtrack" hidden></div>
     </section>
 
     <!-- Inköp -->
@@ -106,6 +110,10 @@
     <div class="surprise-result" id="surpriseResult"></div>
     <div class="confetti" id="confetti"></div>
   </div>
+
+  <!-- Matlagningsläge -->
+  <div class="cook" id="cook" role="dialog" aria-label="Matlagningsläge" hidden></div>
+  <div class="timer-pill" id="timerPill" hidden><span id="timerText"></span><button id="timerStop" aria-label="Stoppa timer">✕</button></div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

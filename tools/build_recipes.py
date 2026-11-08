@@ -174,7 +174,7 @@ r("Räkpasta med vitlök & chili", "🦐", 15, ["snabb"],
    i("körsbärstomater", 250, "g"), i("olja"), i("rucola", 65, "g")],
   ["Koka pastan.", "Fräs vitlök och chili i olja, tillsätt tomaterna.", "Vänd ner räkorna, bara värm.",
    "Blanda med pasta, citron och rucola."])
-r("Shakshuka", "🍳", 25, ["veg", "billig"],
+r("Shakshuka", "🍳", 25, ["veg"],
   [i("ägg", 6, "st"), i("krossade tomater", 800, "g"), i("paprika", 2, "st"), i("gul lök", 1, "st"), i("vitlök", 2, "klyftor"),
    i("spiskummin", 1, "tsk"), i("paprikapulver", 1, "tsk"), i("fetaost", 150, "g"), i("pitabröd", 4, "st")],
   ["Fräs lök, paprika, vitlök och kryddor.", "Tillsätt tomaterna, puttra 10 min.", "Gör gropar och knäck i äggen, lock på 6–8 min.",
@@ -243,6 +243,63 @@ r("Potatis- & purjolökssoppa", "🥔", 30, ["veg", "billig", "matlåda"],
   ["Fräs purjolöken i smör.", "Tillsätt tärnad potatis, buljong och 1 l vatten. Koka 15 min.",
    "Mixa med grädde och timjan.", "Servera med rostat bröd."])
 
+
+# ---- Ungefärliga normalpriser (kr per recept-enhet), ca hösten 2026 ----
+def per(unit, pairs):
+    return {n: {unit: kr} for n, kr in pairs.items()}
+PRIS = {}
+for d in [
+  per("g", {"bacon": .12, "champinjoner": .06, "cheddar": .12, "falukorv": .06, "fetaost": .12, "fryst spenat": .04,
+            "frysta wokgrönsaker": .05, "frysta ärtor": .04, "färsk tortellini": .08, "gnocchi": .05, "halloumi": .16,
+            "krossade tomater": .025, "kycklingfilé": .11, "kycklinglårfilé": .10, "körsbärstomater": .10, "köttbullar": .10,
+            "laxfilé": .25, "mozzarella": .14, "nötfärs": .10, "parmesan": .35, "passerade tomater": .025, "pasta": .03,
+            "potatis": .015, "risnudlar": .06, "riven ost": .10, "rimmat sidfläsk": .12, "rucola": .30, "räkor": .25,
+            "skinka": .14, "sockerärtor": .15, "spenat": .25, "tofu": .07, "torskfilé": .22, "ugnspommes": .03, "äggnudlar": .05}),
+  per("st", {"avokado": 12, "broccoli": 20, "buljongtärning": 2, "chili": 4, "citron": 6, "gul lök": 2, "gurka": 15,
+             "hamburgare": 15, "hamburgerbröd": 5, "lime": 5, "morot": 1.5, "paprika": 12, "pitabröd": 6, "purjolök": 12,
+             "rödlök": 3, "sallad": 18, "salladslök": 4, "tomat": 5, "tortillabröd": 3, "ägg": 3}),
+  per("dl", {"arborioris": 4, "couscous": 3, "crème fraiche": 9, "jasminris": 3, "makaroner": 1.5, "matlagningsgrädde": 6,
+             "mjölk": 1.5, "ris": 2, "röda linser": 4, "turkisk yoghurt": 5, "vetemjöl": .7, "vitt vin": 10}),
+  per("msk", {"currypulver": 1.5, "garam masala": 2, "jordnötssmör": 2, "ostronsås": 1.5, "paprikapulver": 1,
+              "röd currypasta": 3, "soja": 1, "tomatpuré": 1, "senap": 1, "smör": 1.5}),
+  per("tsk", {"spiskummin": .5}), per("ml", {"kokosmjölk": .06}),
+  per("kruka", {"dill": 20, "färsk basilika": 20, "färsk koriander": 20}), per("bit", {"färsk ingefära": 5}),
+  per("klyfta", {"vitlök": 1}), per("paket", {"falafel": 35, "fiskpinnar": 40, "potatismospulver": 20}),
+  per("påse", {"pyttipanna": 35, "tacokrydda": 10}),
+  per("burk", {"grön pesto": 30, "kidneybönor": 10, "kikärtor": 10, "majs": 12, "oliver": 25, "salsa": 25, "svarta bönor": 10}),
+]:
+    for n, v in d.items(): PRIS.setdefault(n, {}).update(v)
+PRIS["cheddar"]["skivor"] = 2.5; PRIS["rostbröd"] = {"skivor": 1.5}
+PRIS["vitlök"]["klyftor"] = 1; PRIS["kikärtor"]["burkar"] = 10; PRIS["paprikapulver"]["tsk"] = .35
+
+def kostnad(r):
+    tot = 0
+    for g in r["ingredienser"]:
+        if g["mangd"] is None: continue          # skafferi/kryddor räknas som hemma
+        assert g["namn"] in PRIS and g["enhet"] in PRIS[g["namn"]], ("pris saknas", g)
+        tot += g["mangd"] * PRIS[g["namn"]][g["enhet"]]
+    return tot
+
+# ---- Kök -> Veckans DJ ----
+KOK = {
+ "italienskt": [1, 7, 16, 17, 24, 25, 26, 29, 30, 33], "mexikanskt": [5, 22, 23, 39], "asiatiskt": [15, 31, 37],
+ "indiskt": [6, 10], "thai": [32, 38], "svenskt": [2, 3, 11, 12, 20, 35, 40], "havet": [4, 8, 21],
+ "amerikanskt": [13, 18, 34], "mellanöstern": [9, 19, 27, 28], "grekiskt": [36], "franskt": [14],
+}
+DJ = {
+ "italienskt": {"namn": "Italiensk trattoria", "emoji": "🇮🇹", "lat": ["That's Amore – Dean Martin", "Volare – Domenico Modugno", "Funiculì, funiculà – Luciano Pavarotti"]},
+ "mexikanskt": {"namn": "Fiesta mexicana", "emoji": "🎺", "lat": ["La Bamba – Ritchie Valens", "Tequila – The Champs", "Oye Como Va – Santana"]},
+ "asiatiskt": {"namn": "Wok'n'roll", "emoji": "🥢", "lat": ["Kung Fu Fighting – Carl Douglas", "Sukiyaki – Kyu Sakamoto", "Gangnam Style – PSY"]},
+ "indiskt": {"namn": "Bollywood-kväll", "emoji": "💃", "lat": ["Jai Ho – A.R. Rahman", "Mundian To Bach Ke – Panjabi MC", "Chaiyya Chaiyya – A.R. Rahman"]},
+ "thai": {"namn": "Bangkok-nätter", "emoji": "🌴", "lat": ["One Night in Bangkok – Murray Head", "Kung Fu Fighting – Carl Douglas", "Sukiyaki – Kyu Sakamoto"]},
+ "svenskt": {"namn": "Svensk husmanspop", "emoji": "🇸🇪", "lat": ["Sommartider – Gyllene Tider", "Dancing Queen – ABBA", "Flickorna på TV2 – Gyllene Tider"]},
+ "havet": {"namn": "Under ytan", "emoji": "🌊", "lat": ["Under the Sea – Samuel E. Wright", "(Sittin' On) The Dock of the Bay – Otis Redding", "Octopus's Garden – The Beatles"]},
+ "amerikanskt": {"namn": "Diner-jukebox", "emoji": "🍔", "lat": ["Johnny B. Goode – Chuck Berry", "Hound Dog – Elvis Presley", "Shake It Off – Taylor Swift"]},
+ "mellanöstern": {"namn": "Basar-beats", "emoji": "🧆", "lat": ["Aïcha – Khaled", "Didi – Khaled", "Ya Rayah – Rachid Taha"]},
+ "grekiskt": {"namn": "Grekisk taverna", "emoji": "🏛️", "lat": ["Zorba's Dance – Mikis Theodorakis", "Misirlou – Dick Dale", "Mamma Mia – ABBA"]},
+ "franskt": {"namn": "Parisisk bistro", "emoji": "🥐", "lat": ["La Vie en rose – Édith Piaf", "Les Champs-Élysées – Joe Dassin", "Non, je ne regrette rien – Édith Piaf"]},
+}
+
 assert len(R) == 40, len(R)
 for x in R:
     assert x["tid"] <= 30, x["namn"]
@@ -253,7 +310,17 @@ for x in R:
     if "veg" in x["taggar"]:
         assert not any(ING[g["namn"]] == K for g in x["ingredienser"]), x["namn"]
 
-ut = {"avdelningar": AVD, "basvaror": BAS, "ingredienser": ING, "recept": R}
+ids = sorted(i for v in KOK.values() for i in v)
+assert ids == list(range(1, 41)), "varje recept ska ha exakt ett kök"
+for k, v in KOK.items():
+    for rid in v: R[rid - 1]["kok"] = k
+for x in R: x["kostnad"] = round(kostnad(x))
+billiga = sorted(x["kostnad"] for x in R if "billig" in x["taggar"])
+ovriga = sorted(x["kostnad"] for x in R if "billig" not in x["taggar"])
+print("median billig", billiga[len(billiga)//2], "kr, övriga", ovriga[len(ovriga)//2], "kr")
+for x in R:
+    if "billig" in x["taggar"]: assert x["kostnad"] <= 100, (x["namn"], x["kostnad"])
+ut = {"avdelningar": AVD, "basvaror": BAS, "ingredienser": ING, "priser": PRIS, "dj": DJ, "recept": R}
 p = pathlib.Path(__file__).resolve().parent.parent / "recipes.json"
 p.write_text(json.dumps(ut, ensure_ascii=False, indent=1))
 print("OK", len(R), "recept,", len(ING), "ingredienser")

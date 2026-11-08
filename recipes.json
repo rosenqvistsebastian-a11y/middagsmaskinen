@@ -138,6 +138,404 @@
   "vatten": "Skafferi",
   "socker": "Skafferi"
  },
+ "priser": {
+  "bacon": {
+   "g": 0.12
+  },
+  "champinjoner": {
+   "g": 0.06
+  },
+  "cheddar": {
+   "g": 0.12,
+   "skivor": 2.5
+  },
+  "falukorv": {
+   "g": 0.06
+  },
+  "fetaost": {
+   "g": 0.12
+  },
+  "fryst spenat": {
+   "g": 0.04
+  },
+  "frysta wokgrönsaker": {
+   "g": 0.05
+  },
+  "frysta ärtor": {
+   "g": 0.04
+  },
+  "färsk tortellini": {
+   "g": 0.08
+  },
+  "gnocchi": {
+   "g": 0.05
+  },
+  "halloumi": {
+   "g": 0.16
+  },
+  "krossade tomater": {
+   "g": 0.025
+  },
+  "kycklingfilé": {
+   "g": 0.11
+  },
+  "kycklinglårfilé": {
+   "g": 0.1
+  },
+  "körsbärstomater": {
+   "g": 0.1
+  },
+  "köttbullar": {
+   "g": 0.1
+  },
+  "laxfilé": {
+   "g": 0.25
+  },
+  "mozzarella": {
+   "g": 0.14
+  },
+  "nötfärs": {
+   "g": 0.1
+  },
+  "parmesan": {
+   "g": 0.35
+  },
+  "passerade tomater": {
+   "g": 0.025
+  },
+  "pasta": {
+   "g": 0.03
+  },
+  "potatis": {
+   "g": 0.015
+  },
+  "risnudlar": {
+   "g": 0.06
+  },
+  "riven ost": {
+   "g": 0.1
+  },
+  "rimmat sidfläsk": {
+   "g": 0.12
+  },
+  "rucola": {
+   "g": 0.3
+  },
+  "räkor": {
+   "g": 0.25
+  },
+  "skinka": {
+   "g": 0.14
+  },
+  "sockerärtor": {
+   "g": 0.15
+  },
+  "spenat": {
+   "g": 0.25
+  },
+  "tofu": {
+   "g": 0.07
+  },
+  "torskfilé": {
+   "g": 0.22
+  },
+  "ugnspommes": {
+   "g": 0.03
+  },
+  "äggnudlar": {
+   "g": 0.05
+  },
+  "avokado": {
+   "st": 12
+  },
+  "broccoli": {
+   "st": 20
+  },
+  "buljongtärning": {
+   "st": 2
+  },
+  "chili": {
+   "st": 4
+  },
+  "citron": {
+   "st": 6
+  },
+  "gul lök": {
+   "st": 2
+  },
+  "gurka": {
+   "st": 15
+  },
+  "hamburgare": {
+   "st": 15
+  },
+  "hamburgerbröd": {
+   "st": 5
+  },
+  "lime": {
+   "st": 5
+  },
+  "morot": {
+   "st": 1.5
+  },
+  "paprika": {
+   "st": 12
+  },
+  "pitabröd": {
+   "st": 6
+  },
+  "purjolök": {
+   "st": 12
+  },
+  "rödlök": {
+   "st": 3
+  },
+  "sallad": {
+   "st": 18
+  },
+  "salladslök": {
+   "st": 4
+  },
+  "tomat": {
+   "st": 5
+  },
+  "tortillabröd": {
+   "st": 3
+  },
+  "ägg": {
+   "st": 3
+  },
+  "arborioris": {
+   "dl": 4
+  },
+  "couscous": {
+   "dl": 3
+  },
+  "crème fraiche": {
+   "dl": 9
+  },
+  "jasminris": {
+   "dl": 3
+  },
+  "makaroner": {
+   "dl": 1.5
+  },
+  "matlagningsgrädde": {
+   "dl": 6
+  },
+  "mjölk": {
+   "dl": 1.5
+  },
+  "ris": {
+   "dl": 2
+  },
+  "röda linser": {
+   "dl": 4
+  },
+  "turkisk yoghurt": {
+   "dl": 5
+  },
+  "vetemjöl": {
+   "dl": 0.7
+  },
+  "vitt vin": {
+   "dl": 10
+  },
+  "currypulver": {
+   "msk": 1.5
+  },
+  "garam masala": {
+   "msk": 2
+  },
+  "jordnötssmör": {
+   "msk": 2
+  },
+  "ostronsås": {
+   "msk": 1.5
+  },
+  "paprikapulver": {
+   "msk": 1,
+   "tsk": 0.35
+  },
+  "röd currypasta": {
+   "msk": 3
+  },
+  "soja": {
+   "msk": 1
+  },
+  "tomatpuré": {
+   "msk": 1
+  },
+  "senap": {
+   "msk": 1
+  },
+  "smör": {
+   "msk": 1.5
+  },
+  "spiskummin": {
+   "tsk": 0.5
+  },
+  "kokosmjölk": {
+   "ml": 0.06
+  },
+  "dill": {
+   "kruka": 20
+  },
+  "färsk basilika": {
+   "kruka": 20
+  },
+  "färsk koriander": {
+   "kruka": 20
+  },
+  "färsk ingefära": {
+   "bit": 5
+  },
+  "vitlök": {
+   "klyfta": 1,
+   "klyftor": 1
+  },
+  "falafel": {
+   "paket": 35
+  },
+  "fiskpinnar": {
+   "paket": 40
+  },
+  "potatismospulver": {
+   "paket": 20
+  },
+  "pyttipanna": {
+   "påse": 35
+  },
+  "tacokrydda": {
+   "påse": 10
+  },
+  "grön pesto": {
+   "burk": 30
+  },
+  "kidneybönor": {
+   "burk": 10
+  },
+  "kikärtor": {
+   "burk": 10,
+   "burkar": 10
+  },
+  "majs": {
+   "burk": 12
+  },
+  "oliver": {
+   "burk": 25
+  },
+  "salsa": {
+   "burk": 25
+  },
+  "svarta bönor": {
+   "burk": 10
+  },
+  "rostbröd": {
+   "skivor": 1.5
+  }
+ },
+ "dj": {
+  "italienskt": {
+   "namn": "Italiensk trattoria",
+   "emoji": "🇮🇹",
+   "lat": [
+    "That's Amore – Dean Martin",
+    "Volare – Domenico Modugno",
+    "Funiculì, funiculà – Luciano Pavarotti"
+   ]
+  },
+  "mexikanskt": {
+   "namn": "Fiesta mexicana",
+   "emoji": "🎺",
+   "lat": [
+    "La Bamba – Ritchie Valens",
+    "Tequila – The Champs",
+    "Oye Como Va – Santana"
+   ]
+  },
+  "asiatiskt": {
+   "namn": "Wok'n'roll",
+   "emoji": "🥢",
+   "lat": [
+    "Kung Fu Fighting – Carl Douglas",
+    "Sukiyaki – Kyu Sakamoto",
+    "Gangnam Style – PSY"
+   ]
+  },
+  "indiskt": {
+   "namn": "Bollywood-kväll",
+   "emoji": "💃",
+   "lat": [
+    "Jai Ho – A.R. Rahman",
+    "Mundian To Bach Ke – Panjabi MC",
+    "Chaiyya Chaiyya – A.R. Rahman"
+   ]
+  },
+  "thai": {
+   "namn": "Bangkok-nätter",
+   "emoji": "🌴",
+   "lat": [
+    "One Night in Bangkok – Murray Head",
+    "Kung Fu Fighting – Carl Douglas",
+    "Sukiyaki – Kyu Sakamoto"
+   ]
+  },
+  "svenskt": {
+   "namn": "Svensk husmanspop",
+   "emoji": "🇸🇪",
+   "lat": [
+    "Sommartider – Gyllene Tider",
+    "Dancing Queen – ABBA",
+    "Flickorna på TV2 – Gyllene Tider"
+   ]
+  },
+  "havet": {
+   "namn": "Under ytan",
+   "emoji": "🌊",
+   "lat": [
+    "Under the Sea – Samuel E. Wright",
+    "(Sittin' On) The Dock of the Bay – Otis Redding",
+    "Octopus's Garden – The Beatles"
+   ]
+  },
+  "amerikanskt": {
+   "namn": "Diner-jukebox",
+   "emoji": "🍔",
+   "lat": [
+    "Johnny B. Goode – Chuck Berry",
+    "Hound Dog – Elvis Presley",
+    "Shake It Off – Taylor Swift"
+   ]
+  },
+  "mellanöstern": {
+   "namn": "Basar-beats",
+   "emoji": "🧆",
+   "lat": [
+    "Aïcha – Khaled",
+    "Didi – Khaled",
+    "Ya Rayah – Rachid Taha"
+   ]
+  },
+  "grekiskt": {
+   "namn": "Grekisk taverna",
+   "emoji": "🏛️",
+   "lat": [
+    "Zorba's Dance – Mikis Theodorakis",
+    "Misirlou – Dick Dale",
+    "Mamma Mia – ABBA"
+   ]
+  },
+  "franskt": {
+   "namn": "Parisisk bistro",
+   "emoji": "🥐",
+   "lat": [
+    "La Vie en rose – Édith Piaf",
+    "Les Champs-Élysées – Joe Dassin",
+    "Non, je ne regrette rien – Édith Piaf"
+   ]
+  }
+ },
  "recept": [
   {
    "id": 1,
@@ -185,7 +583,9 @@
     "Stek baconet krispigt.",
     "Vispa ägg och riven parmesan.",
     "Blanda varm pasta med bacon, rör ner äggblandningen snabbt utanför plattan. Mycket peppar!"
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 69
   },
   {
    "id": 2,
@@ -244,7 +644,9 @@
     "Strimla korv och lök, fräs i smör.",
     "Rör ner tomatpuré, krossade tomater, grädde och senap.",
     "Låt puttra 5 min. Servera med ris."
-   ]
+   ],
+   "kok": "svenskt",
+   "kostnad": 62
   },
   {
    "id": 3,
@@ -293,7 +695,9 @@
     "Vispa i resten av mjölken, ägg, salt och smält smör.",
     "Stek tunna pannkakor i smör.",
     "Servera med sylt (och kanske grädde)."
-   ]
+   ],
+   "kok": "svenskt",
+   "kostnad": 24
   },
   {
    "id": 4,
@@ -342,7 +746,9 @@
     "Rör ihop moset med mjölk, vatten och smör.",
     "Koka ärtorna 2 min.",
     "Servera med citronklyftor."
-   ]
+   ],
+   "kok": "havet",
+   "kostnad": 87
   },
   {
    "id": 5,
@@ -410,7 +816,9 @@
     "Hacka grönsakerna.",
     "Värm bröden.",
     "Bygg själv vid bordet!"
-   ]
+   ],
+   "kok": "mexikanskt",
+   "kostnad": 197
   },
   {
    "id": 6,
@@ -468,7 +876,9 @@
     "Bryn kyckling i bitar med lök och curry.",
     "Häll i kokosmjölk och strimlad paprika.",
     "Puttra 10 min. Smaka av med salt."
-   ]
+   ],
+   "kok": "indiskt",
+   "kostnad": 115
   },
   {
    "id": 7,
@@ -533,7 +943,9 @@
     "Tillsätt linser, tomater, buljong och 2 dl vatten.",
     "Koka 15 min tills linserna är mjuka.",
     "Servera med pasta."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 49
   },
   {
    "id": 8,
@@ -589,7 +1001,9 @@
     "Lägg laxen i form, salta, citron på. Ugn 200° i 15 min.",
     "Rör crème fraiche med dill och citronskal.",
     "Pressa potatisen grovt med smör. Servera."
-   ]
+   ],
+   "kok": "havet",
+   "kostnad": 186
   },
   {
    "id": 9,
@@ -648,7 +1062,9 @@
     "Rör yoghurt med pressad vitlök och salt.",
     "Skiva grönsakerna.",
     "Fyll bröden – klart!"
-   ]
+   ],
+   "kok": "mellanöstern",
+   "kostnad": 116
   },
   {
    "id": 10,
@@ -713,7 +1129,9 @@
     "Fräs lök, vitlök, ingefära och garam masala.",
     "Tillsätt tomat, kokosmjölk och kikärtor. Puttra 10 min.",
     "Vänd ner spenaten precis innan servering."
-   ]
+   ],
+   "kok": "indiskt",
+   "kostnad": 89
   },
   {
    "id": 11,
@@ -756,7 +1174,9 @@
     "Stek pyttin i smör tills den får färg.",
     "Stek äggen.",
     "Servera med sylt eller senap. Ingen skam!"
-   ]
+   ],
+   "kok": "svenskt",
+   "kostnad": 47
   },
   {
    "id": 12,
@@ -799,7 +1219,9 @@
     "Koka makaronerna.",
     "Stek köttbullarna i smör.",
     "Servera med ketchup eller lingon – välj sida!"
-   ]
+   ],
+   "kok": "svenskt",
+   "kostnad": 56
   },
   {
    "id": 13,
@@ -858,7 +1280,9 @@
     "Rosta bröden.",
     "Rör majonnäs med sweet chili.",
     "Bygg burgare med alla godsaker."
-   ]
+   ],
+   "kok": "amerikanskt",
+   "kostnad": 127
   },
   {
    "id": 14,
@@ -918,7 +1342,9 @@
     "Vispa ägg, mjölk, salt och peppar.",
     "Häll över svampen, låt stelna på medelvärme.",
     "Strö över ost och salladslök, vik ihop."
-   ]
+   ],
+   "kok": "franskt",
+   "kostnad": 58
   },
   {
    "id": 15,
@@ -976,7 +1402,9 @@
     "Woka kycklingstrimlor heta i olja.",
     "Tillsätt grönsaker, vitlök och ingefära.",
     "Vänd ner nudlar, soja och ostronsås."
-   ]
+   ],
+   "kok": "asiatiskt",
+   "kostnad": 106
   },
   {
    "id": 16,
@@ -1025,7 +1453,9 @@
     "Värm grädde, spenat och vitlök i en panna.",
     "Rör ner parmesan och tortellini.",
     "Peppra rejält."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 84
   },
   {
    "id": 17,
@@ -1079,7 +1509,9 @@
     "Stek kycklingen i bitar.",
     "Blanda pasta, pesto, kyckling och halverade tomater.",
     "Toppa med rucola och parmesan."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 148
   },
   {
    "id": 18,
@@ -1143,7 +1575,9 @@
     "Tillsätt tomater, buljong och 3 dl vatten, koka 10 min.",
     "Mixa med grädde.",
     "Stek ostmackor i smör tills osten smält. Doppa!"
-   ]
+   ],
+   "kok": "amerikanskt",
+   "kostnad": 87
   },
   {
    "id": 19,
@@ -1203,7 +1637,9 @@
     "Tillsätt linser, tomat, buljong och 1 liter vatten.",
     "Koka 15 min, mixa slät.",
     "Pressa i citron. Toppa med yoghurt."
-   ]
+   ],
+   "kok": "mellanöstern",
+   "kostnad": 48
   },
   {
    "id": 20,
@@ -1256,7 +1692,9 @@
     "Strö ost över, ugn 225° i 15 min.",
     "Rör ihop moset.",
     "Servera – barndom på en tallrik."
-   ]
+   ],
+   "kok": "svenskt",
+   "kostnad": 88
   },
   {
    "id": 21,
@@ -1312,7 +1750,9 @@
     "Lägg torsken i form, bred över crème fraiche med citronskal och dill.",
     "Ugn 200° i 15 min.",
     "Koka broccolin 3 min. Servera."
-   ]
+   ],
+   "kok": "havet",
+   "kostnad": 182
   },
   {
    "id": 22,
@@ -1382,7 +1822,9 @@
     "Fräs lök, paprika och kryddor.",
     "Tillsätt bönor och tomater, puttra 15 min.",
     "Toppa med crème fraiche."
-   ]
+   ],
+   "kok": "mexikanskt",
+   "kostnad": 82
   },
   {
    "id": 23,
@@ -1432,7 +1874,9 @@
     "Bred på bröd, strö över majs och ost, lägg på ett bröd till.",
     "Stek gyllene på båda sidor.",
     "Skär i trianglar, doppa i salsa."
-   ]
+   ],
+   "kok": "mexikanskt",
+   "kostnad": 91
   },
   {
    "id": 24,
@@ -1500,7 +1944,9 @@
     "Tillsätt tomatpuré, tomater, buljong och oregano.",
     "Puttra 15 min medan pastan kokar.",
     "Servera med parmesan."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 109
   },
   {
    "id": 25,
@@ -1558,7 +2004,9 @@
     "Rör ner riset, häll i vinet.",
     "Tillsätt varm buljong lite i taget under omrörning, ca 18 min.",
     "Rör ner parmesan och en klick smör."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 74
   },
   {
    "id": 26,
@@ -1616,7 +2064,9 @@
     "Fräs vitlök och chili i olja, tillsätt tomaterna.",
     "Vänd ner räkorna, bara värm.",
     "Blanda med pasta, citron och rucola."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 144
   },
   {
    "id": 27,
@@ -1625,8 +2075,7 @@
    "tid": 25,
    "portioner": 4,
    "taggar": [
-    "veg",
-    "billig"
+    "veg"
    ],
    "ingredienser": [
     {
@@ -1680,7 +2129,9 @@
     "Tillsätt tomaterna, puttra 10 min.",
     "Gör gropar och knäck i äggen, lock på 6–8 min.",
     "Smula över feta. Doppa bröd!"
-   ]
+   ],
+   "kok": "mellanöstern",
+   "kostnad": 109
   },
   {
    "id": 28,
@@ -1739,7 +2190,9 @@
     "Stek kycklingen.",
     "Hacka grönsakerna.",
     "Blanda allt med citron och olja."
-   ]
+   ],
+   "kok": "mellanöstern",
+   "kostnad": 120
   },
   {
    "id": 29,
@@ -1788,7 +2241,9 @@
     "Bred tomat på bröden, strö över oregano.",
     "Toppa med skinka, svamp och ost.",
     "Grädda 6–8 min tills krispigt."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 92
   },
   {
    "id": 30,
@@ -1837,7 +2292,9 @@
     "Tillsätt vitlök och tomater, puttra 5 min.",
     "Riv över mozzarella, gratinera eller lock på.",
     "Toppa med basilika."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 74
   },
   {
    "id": 31,
@@ -1897,7 +2354,9 @@
     "Koka äggen 7 min.",
     "Lägg nudlar och sockerärtor i buljongen 3 min.",
     "Toppa med halverade ägg, salladslök och sambal."
-   ]
+   ],
+   "kok": "asiatiskt",
+   "kostnad": 70
   },
   {
    "id": 32,
@@ -1955,7 +2414,9 @@
     "Stek kycklingen i bitar.",
     "Rör ner currypasta, jordnötssmör, kokosmjölk och soja. Puttra 8 min.",
     "Koka broccolin. Pressa lime över."
-   ]
+   ],
+   "kok": "thai",
+   "kostnad": 132
   },
   {
    "id": 33,
@@ -2008,7 +2469,9 @@
     "Stek laxen i bitar.",
     "Häll i grädde, vitlök och citronskal.",
     "Vänd ner spenat och pasta. Riv över parmesan."
-   ]
+   ],
+   "kok": "italienskt",
+   "kostnad": 168
   },
   {
    "id": 34,
@@ -2071,7 +2534,9 @@
     "Stek burgarna, lägg på ost sista minuten.",
     "Rosta bröden.",
     "Bygg och njut."
-   ]
+   ],
+   "kok": "amerikanskt",
+   "kostnad": 144
   },
   {
    "id": 35,
@@ -2129,7 +2594,9 @@
     "Riv potatisen och blanda i.",
     "Stek fläsket krispigt.",
     "Stek tunna raggmunkar i smör. Servera med lingon."
-   ]
+   ],
+   "kok": "svenskt",
+   "kostnad": 73
   },
   {
    "id": 36,
@@ -2193,7 +2660,9 @@
     "Hacka grönsakerna.",
     "Blanda med feta, oliver, olja, citron och oregano.",
     "Perfekt i matlådan i morgon."
-   ]
+   ],
+   "kok": "grekiskt",
+   "kostnad": 104
   },
   {
    "id": 37,
@@ -2254,7 +2723,9 @@
     "Woka morot, vitlök och ärtor.",
     "Skjut åt sidan, rör ihop äggen i pannan.",
     "Vänd ner riset och soja. Toppa med salladslök."
-   ]
+   ],
+   "kok": "asiatiskt",
+   "kostnad": 48
   },
   {
    "id": 38,
@@ -2318,7 +2789,9 @@
     "Stek tofun i tärningar gyllene.",
     "Fräs currypastan, häll i kokosmjölk, paprika och sockerärtor, 5 min.",
     "Vänd ner tofun, smaka av med lime och soja. Toppa med koriander."
-   ]
+   ],
+   "kok": "thai",
+   "kostnad": 130
   },
   {
    "id": 39,
@@ -2376,7 +2849,9 @@
     "Stek hett med tacokryddan.",
     "Mosa avokado med lime och salt.",
     "Rulla in i varma tortillas."
-   ]
+   ],
+   "kok": "mexikanskt",
+   "kostnad": 163
   },
   {
    "id": 40,
@@ -2431,7 +2906,9 @@
     "Tillsätt tärnad potatis, buljong och 1 l vatten. Koka 15 min.",
     "Mixa med grädde och timjan.",
     "Servera med rostat bröd."
-   ]
+   ],
+   "kok": "svenskt",
+   "kostnad": 58
   }
  ]
 }

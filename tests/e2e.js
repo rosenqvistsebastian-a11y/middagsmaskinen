@@ -105,6 +105,66 @@ const ok = (cond, msg) => { console.log((cond ? '✅ ' : '❌ ') + msg); if (!co
   await page.click('#surpriseResult [data-addday]');
   ok(await page.locator('#view-vecka.active').count() === 1, '"Vi äter det idag" -> veckovyn');
 
+  // ---- Omgång 2 ----
+  // Budget + portioner
+  await page.click('[data-view="vecka"]');
+  const kr = async () => +(await page.textContent('#budgetTotal')).replace(/\D/g, '');
+  const b4 = await kr();
+  ok(b4 > 200 && b4 < 2000, `budget för veckan: ${b4} kr`);
+  await page.click('#portionWeek [data-port="1"]'); await page.click('#portionWeek [data-port="1"]');
+  const b6 = await kr();
+  ok(Math.abs(b6 / b4 - 1.5) < 0.05, `6 portioner -> budget ×1,5 (${b4} -> ${b6} kr)`);
+  const filled = await page.locator('.day-card .rname').count();
+  ok(await page.locator('#soundtrack .dj-day').count() === filled, `veckans soundtrack: en låt per planerad dag (${filled})`);
+  await page.evaluate(() => openRecipe(1));
+  const pasta = await page.locator('#sheet .ing-list li', { hasText: 'Pasta' }).locator('.qty').textContent();
+  ok(pasta === '600 g', `carbonara för 6: pasta ${pasta}`);
+  const eggs = await page.locator('#sheet .ing-list li', { hasText: 'Ägg' }).locator('.qty').textContent();
+  ok(eggs === '6 st', `carbonara för 6: ägg ${eggs}`);
+  await page.click('#sheet [data-port="-1"]'); await page.click('#sheet [data-port="-1"]');
+  ok((await page.locator('#sheet .ing-list li', { hasText: 'Pasta' }).locator('.qty').textContent()) === '400 g', 'tillbaka till 4 portioner i receptvyn');
+  const songs = await page.locator('#sheet .dj-song').evaluateAll((a) => a.map((x) => x.href));
+  ok(songs.length === 3 && songs.every((h) => h.startsWith('https://open.spotify.com/search/')), 'DJ: 3 låttips med Spotify-länk');
+  ok((await page.textContent('#sheet .dj-head')).includes('Italiensk'), 'carbonara får italiensk DJ');
+
+  // Matlagningsläge
+  await page.evaluate(() => openRecipe(21));
+  await page.click('#sheet [data-cook]');
+  ok(await page.isVisible('#cook'), 'matlagningsläge öppnas');
+  ok((await page.textContent('#cookCard h2')) === 'Plocka fram', 'första steget: plocka fram');
+  await page.locator('[data-cooking="0"]').click();
+  ok(await page.locator('[data-cooking="0"].got').count() === 1, 'bocka av ingrediens i matlagningsläget');
+  await page.click('[data-cooknav="1"]'); await page.click('[data-cooknav="1"]');
+  ok(await page.locator('#cookCard').textContent().then((t) => t.includes('Lägg torsken')), 'steg 2 visar texten stort');
+  await drag('#cookCard', -200); await page.waitForTimeout(300);
+  ok((await page.textContent('#cookCard h2')).startsWith('Steg 3'), 'swipe till nästa steg');
+  ok((await page.textContent('[data-timer]')).includes('15 min'), 'timerknapp läser av "15 min" ur steget');
+  await shot('9-laga');
+  await page.click('[data-timer]');
+  ok(await page.isVisible('#timerPill'), 'timer: ' + await page.textContent('#timerText'));
+  await page.evaluate(() => { timer.end = Date.now() - 10; });
+  await page.waitForSelector('#timerPill.ringing', { timeout: 2000 });
+  ok(true, 'timern ringer när tiden är slut');
+  await page.click('#timerPill', { force: true }); ok(!(await page.isVisible('#timerPill')), 'tryck stänger timern');
+  for (let i = 0; i < 6; i++) await page.keyboard.press('ArrowRight');
+  ok(await page.locator('.cook-done').count() === 1, 'sista steget: smaklig måltid 🎉');
+  await shot('10-klar');
+  await page.click('.cook-x');
+  ok(!(await page.isVisible('#cook')), 'stäng matlagningsläget');
+
+  // Skaka mobilen
+  await page.click('[data-view="recept"]');
+  await ctx.grantPermissions(['accelerometer', 'gyroscope'], { origin: 'http://localhost:8765' });
+  await page.click('#shakeHint');
+  await page.waitForFunction(() => document.getElementById('shakeHint').textContent.includes('är på'), null, { timeout: 3000 });
+  ok(true, 'skaka-läge påslaget (efter "Tillåt rörelse")');
+  await page.evaluate(() => { for (let i = 0; i < 8; i++) window.dispatchEvent(new DeviceMotionEvent('devicemotion', { accelerationIncludingGravity: { x: i % 2 ? 20 : -20, y: 0, z: 9.8 } })); });
+  ok(await page.isVisible('#surprise'), 'skaka -> överraska mig snurrar');
+  await page.waitForSelector('#surpriseResult .oracle', { timeout: 4000 });
+  ok(true, 'åtta-bollen säger: ' + await page.textContent('#surpriseResult .oracle'));
+  await page.click('#surpriseResult .btn.ghost[data-closesurprise]');
+  await page.click('[data-view="vecka"]');
+
   // Sparat lokalt
   const weekBefore = await page.locator('.day-card .rname').allTextContents();
   await page.reload(); await page.waitForSelector('.rcard', { state: 'attached' });
